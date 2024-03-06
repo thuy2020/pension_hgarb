@@ -1,0 +1,159 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+library(dplyr)
+library(readxl) 
+library(stringr)
+library(rio)
+library(here)
+library(janitor)
+library(tidyr)
+```
+
+<<<<<<< HEAD
+# Reason data field fullname & shortname by document source
+=======
+<<<<<<< HEAD
+# Reason col names
+=======
+# Col names ppd vs Reason
+>>>>>>> be4079b (inner join ppd and reason data)
+>>>>>>> bbadb7c9c59178c1996a69518bd62448c44296fc
+
+```{r}
+#gasb
+gasb_fullname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "GASB 68") %>% colnames()
+
+gasb_shortname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_gasb"))) %>% 
+  colnames() 
+
+#valuation
+valuation_fullname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "Actuarial Valuation") %>% colnames()
+
+valuation_shortname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "Actuarial Valuation", skip = 1) %>% clean_names() %>% 
+  # Differentiate some cols from sheet 2 & sheet 3 
+      setnames(
+        old =  c("actuarial_return", "market_return","ava" , "aal","ual", "funded_ratio_old", "payroll"), 
+        new = c(paste0(c("actuarial_return", "market_return","ava" , "aal", "ual", "funded_ratio_old", "payroll"), "_from_valuation"))) %>% 
+  colnames()
+  
+#acfr
+acfr_fullname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "CAFR") %>% colnames()
+
+acfr_shortname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "CAFR", skip = 1) %>% clean_names() %>%  
+  # Differentiate some cols from sheet 2 & sheet 3 
+   setnames(old = c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"),
+    new = c(paste0(c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"), "_from_acfr"))) %>% 
+  
+  # Differentiate sheet 1 & sheet 3
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr"))) %>% 
+  colnames()
+
+data.frame(field_name_full = c(gasb_fullname, valuation_fullname, acfr_fullname),
+           field_name_short = c(gasb_shortname, valuation_shortname, acfr_shortname)
+  )
+
+reason_field_name_full_short_source <- (data.frame(field_name_full = gasb_fullname,
+           field_name_short = gasb_shortname) %>% mutate(source = "gasb")) %>% 
+  
+  rbind(data.frame(field_name_full = valuation_fullname, 
+           field_name_short = valuation_shortname) %>% 
+  mutate(source = "valuation") %>% 
+    slice(-c(1:2))) %>% #remove full_name and fye
+  
+  rbind(data.frame(field_name_full = acfr_fullname, 
+           field_name_short = acfr_shortname) %>% 
+  mutate(source = "acfr") %>% 
+    slice(-c(1:2))) %>% #remove full_name and fye
+
+write.csv(reason_field_name_full_short_source, "output/reason_field_name_by_document.csv")
+```
+
+## Reason and ppd_id
+```{r}
+
+```
+
+
+# PPD
+
+```{r}
+
+```
+
+
+```{r}
+# downloaded from ppd site
+ppd_colnames <- import(here("data/ppd-data-latest.csv")) %>% 
+  colnames() %>% tolower()%>% sort()
+
+#https://publicplansdata.org/public-plans-database/download-full-data-set/
+ppd_colnames_from_codebook <- import(here("data/ppd-codebook.csv")) %>% 
+  clean_names() %>% 
+  # change 
+  rename(ppd_fullname = variable_label) %>% 
+  mutate(ppd_shortname = str_to_lower(variable_name)) %>% select(ppd_fullname, ppd_shortname) 
+  
+  
+# it seems like Reason has slightly different ppd colnames:
+ppd_colnames_created_by_reason <-import(here::here("data/marc_swaroop_handover_files/ppd-out.xlsx"))%>% colnames() %>% sort()
+
+write.csv(ppd_colnames_from_codebook, "output/ppd_colnames_from_codebook.csv")
+
+```
+
+
+```{r}
+# variable id from ppd
+import("data/marc_swaroop_handover_files/ppd-import-1.csv") %>% 
+  select(attribute_id, attribute_column_name_lcase) %>% distinct() %>% arrange(attribute_column_name_lcase)
+
+# variable id from reason Hgarb file: 
+import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = 6) %>% arrange(`attribute column name`)
+
+import("data/HGarb_Updates_2021/Texas_ESRS_updated_2021.xlsx", sheet = 6) %>% arrange(`attribute column name`)
+
+import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 6) %>% arrange(`attribute column name`)
+
+import("data/HGarb_Updates_2022/Arizona_PSPRS_Tier1_2_updated_2022.xlsx", sheet = 6) %>% arrange(`attribute column name`)
+
+#### ---> these variable id from these 2 files are different. How to link these 2 ids?
+
+import("data/marc_swaroop_handover_files/attribs.xlsx")
+```
+
+<<<<<<< HEAD
+
+=======
+# Colnames in Reason 2022
+
+```{r}
+gasb <- import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = "GASB 68", skip = 1) %>% colnames()
+valuation <- import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = "Actuarial Valuation", skip = 1) %>% colnames()
+acfr <- import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = "CAFR", skip = 1) %>% colnames()
+
+length(gasb)
+length(valuation)
+length(acfr)
+pension_colnames <- data.frame(gasb_colnames = c(gasb,rep(NA, length(valuation) - length(gasb))), 
+           acfrs_colnames = c(acfr, rep(NA, length(valuation) - length(acfr))),
+           valuation_colnames = c(valuation) 
+           )
+write.csv(pension_colnames, "output/reason_pension_colnames_by_documents.csv")
+```
+
+```{r}
+
+```
+>>>>>>> be4079b (inner join ppd and reason data)

@@ -1,0 +1,633 @@
+"id","name","datatype","line_item_code","display_order","attribute_column_name","multiplier","weight","plan_attribute_master_id","data_source_id","attribute_category_id","attribute_type","calculated_rule","attributes_for_master","status_calculated"
+"360","Fiscal Year","varchar","fy",207,"fy",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"10852","GASB 68 Valuation File","varchar","gasb_68_valuation_file",9806,"gasb_68_valuation_file",NULL,"0",NULL,"3","362","static","",NULL,NULL
+"10850","CAFR File","varchar","cafr_file",9902,"cafr_file",NULL,"0",NULL,"3","362","static","",NULL,NULL
+"10861","Valuation Date","shortdate","vd",700,"vd","1",NULL,NULL,"3","401","static",NULL,NULL,NULL
+"10862","Prior Measurment Date","shortdate","pmd",701,"pmd","1",NULL,NULL,"3","401","static",NULL,NULL,NULL
+"10863","Measurment Date (MD)","shortdate","cmd",702,"cmd","1",NULL,NULL,"3","401","static",NULL,NULL,NULL
+"10864","Membership Data: Retirees and Beneficiaries","int","gasb_retirees",703,"gasb_retirees","1",NULL,NULL,"3","402","static",NULL,NULL,NULL
+"10865","Membership Data: Inactive Vested","int","gasb_inactivevest",704,"gasb_inactivevest","1",NULL,NULL,"3","402","static",NULL,NULL,NULL
+"10866","Membership Data: Inactive Nonvested","int","gasb_inactivenonvest",705,"gasb_inactivenonvest","1",NULL,NULL,"3","402","static",NULL,NULL,NULL
+"10867","Membership Data: Active","int","gasb_active",706,"gasb_active","1",NULL,NULL,"3","402","static",NULL,NULL,NULL
+"10868","Membership Data: Total","int","gasb_totmembers",707,"gasb_totmembers","1",NULL,NULL,"3","402","static",NULL,NULL,NULL
+"10859","Test difference beetween total","bigint","123456789",NULL,NULL,"1000","0",NULL,"3",NULL,"calculated","#611##-##587#",NULL,"done"
+"527","Other Contributions","real","contrib_other",374,"contrib_other","1000","1","-1","2","78","static",NULL,NULL,NULL
+"528","Total Contributions","real","contrib_tot",375,"contrib_tot","1000","1","-1","2","78","static",NULL,NULL,NULL
+"478","Were Actuarial Assets Estimated By CRR ?","real","actassets_est",325,"actassets_est","1","0","-1","2","137","static",NULL,NULL,NULL
+"479","Were Actuarial Liabilities Estimated By CRR ?","real","actliabilities_est",326,"actliabilities_est","1","0","-1","2","141","static",NULL,NULL,NULL
+"475","aec","real","aec",322,"aec","1000","0","-1","2","78","static",NULL,NULL,NULL
+"515","Percent of Assets Invested In Alternatives","real","alternatives",362,"alternatives","1","0","-1","2","137","static",NULL,NULL,NULL
+"519","Securities Management Lending Fees","varchar","expense_seclendmgmtfees",366,"expense_seclendmgmtfees",NULL,"0","-1","2","148","static",NULL,NULL,NULL
+"518","Securities Lending - Fair Value Change","varchar","fairvaluechange_seclend",365,"fairvaluechange_seclend",NULL,"0","-1","2","137","static",NULL,NULL,NULL
+"520","Securities Lending - Fair Value Change (UG)","varchar","fairvaluechange_seclendug",367,"fairvaluechange_seclendug",NULL,"0","-1","2","137","static",NULL,NULL,NULL
+"509","Percent of Assets Invested in International Equities","real","equities_international",356,"equities_international","1","0","-1","2","137","static",NULL,NULL,NULL
+"507","Percent of Assets Invested in Equities","real","equities_tot",354,"equities_tot","1","0","-1","2","137","static",NULL,NULL,NULL
+"510","Percent of Assets Invested In Bonds","real","fixedincome_tot",357,"fixedincome_tot","1","0","-1","2","137","static",NULL,NULL,NULL
+"511","Percent of Assets Invested In Us Bonds","real","fixedincome_domestic",358,"fixedincome_domestic","1","0","-1","2","137","static",NULL,NULL,NULL
+"512","Percent of Assets Invested In Foreign Bonds","real","fixedincome_international",359,"fixedincome_international","1","0","-1","2","137","static",NULL,NULL,NULL
+"422","Actuarial Valuation Date For GASB Assumptions","date","Actuarial Valuation Date (GASB Assumptions)",269,"Actuarial Valuation Date (GASB Assumptions)",NULL,"0","-1","2","354","static","",NULL,NULL
+"498","Long-Term Investment Return","varchar","investmentreturn_longterm",345,"investmentreturn_longterm",NULL,"0","-1","2","137","static",NULL,NULL,NULL
+"499","Starting Year for Long-Term Investment Return Calculation","varchar","investmentreturn_longtermstartye",346,"investmentreturn_longtermstartye",NULL,"0","-1","2","137","static",NULL,NULL,NULL
+"609","DROP Members","real","dropmembers",456,"dropmembers","1","0","-1","2","143","static",NULL,NULL,NULL
+"554","Deductions - Survivor Benefits","real","expense_survivorbenefits",401,"expense_survivorbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"626","Actuarial Assets","real","actassets_ava",473,"actassets_ava","1000","0","-1","2","137","static",NULL,NULL,NULL
+"546","Securities Lending Rebates","real","income_securitieslendingrebate",393,"income_securitieslendingrebate","1000","0","-1","2","83","static",NULL,NULL,NULL
+"549","Deductions - Total Benefit Payments","real","expense_totbenefits",396,"expense_totbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"628","Actuarial Liabilities Under Projected Unit Credit","real","actliabilities_puc",475,"actliabilities_puc","1000","0","-1","2","141","static",NULL,NULL,NULL
+"627","Actuarial Liabilities Under Entry Age Normal","real","actliabilities_ean",474,"actliabilities_ean","1000","0","-1","2","141","static",NULL,NULL,NULL
+"404","Actuarial Valuation Report Date","date","actrptdate",251,"actrptdate",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"405","Fiscal Year End Date","date","fye",252,"fye",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"458","Data Source for GASB Schedules","varchar","source_gasbschedules",305,"source_gasbschedules",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"484","Data Source for Investment Return Data","varchar","source_investmentreturn",331,"source_investmentreturn",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"582","Actuarial Valuation Date for Actuarial Costs","varchar","actvaldate_actuarialcosts",429,"actvaldate_actuarialcosts",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"584","Data Source for Membership Data","varchar","source_membership",431,"source_membership",NULL,"0","-1","2","143","static",NULL,NULL,NULL
+"585","Total Number Of Disability Retirees","varchar","beneficiaries_disabilityretirees",432,"beneficiaries_disabilityretirees",NULL,"0","-1","2","143","static",NULL,NULL,NULL
+"586","Total Number Of Dependent Survivor Beneficiaries","varchar","beneficiaries_dependentsurvivors",433,"beneficiaries_dependentsurvivors",NULL,"0","-1","2","143","static",NULL,NULL,NULL
+"423","Source Reference for Funding and Methods","varchar","source_fundingandmethods",270,"source_fundingandmethods",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"424","Asset Valuation Method for Plan Reporting","varchar","assetvalmeth",271,"assetvalmeth",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"425","Gain/Loss Values to be Included in Smoothed Asset Calculation","varchar","phasein",272,"phasein",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"426","Asset Valuation Method Note","varchar","assetvalmeth_note",273,"assetvalmeth_note",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"363","Plan Full Name","varchar","planfullname",210,"planfullname",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"608","Total Number Of Other Beneficiaries","real","beneficiaries_other",455,"beneficiaries_other","1","0","-1","2","143","static",NULL,NULL,NULL
+"559","Deductions - Administrative Expense","real","expense_adminexpenses",406,"expense_adminexpenses","1000","0","-1","2","148","static",NULL,NULL,NULL
+"625","Market Assets Reported In Actuarial Valuation","real","mktassets_actrpt",472,"mktassets_actrpt","1000","0","-1","2","137","static",NULL,NULL,NULL
+"610","Other Members","real","othermembers",457,"othermembers","1","0","-1","2","143","static",NULL,NULL,NULL
+"611","Total Number Of Members","real","totmembership",458,"totmembership","1","0","-1","2","143","static",NULL,NULL,NULL
+"612","Estimated Average Salary Of Actives (Flag)","real","activesalary_avg_est",459,"activesalary_avg_est","1","0","-1","2","143","static",NULL,NULL,NULL
+"613","Estimated Average Benefit Of Beneficiaries (Flag)","real","beneficiarybenefit_avg_est",460,"beneficiarybenefit_avg_est","1","0","-1","2","143","static",NULL,NULL,NULL
+"454","Total Amortization Period","real","totamortperiod",301,"totamortperiod","1","0","-1","2","354","static",NULL,NULL,NULL
+"427","Actuarial Cost Method for Plan Reporting","varchar","actcostmeth",274,"actcostmeth",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"428","Actuarial Cost Method Notes","varchar","actcostmeth_note",275,"actcostmeth_note",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"429","Funding Method for Plan Reporting","varchar","fundingmeth",276,"fundingmeth",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"407","Source Reference for GASB Assumptions","varchar","source_gasbassumptions",254,"source_gasbassumptions",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"408","Actuarial Cost Method for GASB Reporting","varchar","actcostmeth_gasb",255,"actcostmeth_gasb",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"409","Asset Valuation Method for GASB Reporting","varchar","assetvalmeth_gasb",256,"assetvalmeth_gasb",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"410","Amortizaton Method","varchar","fundingmeth_gasb",257,"fundingmeth_gasb",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"412","COLA Code","varchar","cola_code",259,"cola_code",NULL,"0","-1","2","355","static",NULL,NULL,NULL
+"406","Data Entry Code","varchar","dataentrycode",253,"dataentrycode",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"411","COLA Provsion Text","varchar","cola_verabatim",258,"cola_verabatim",NULL,"0","-1","2","355","static",NULL,NULL,NULL
+"456","Unfunded Liability Year Established","varchar","uaalyearestablished",303,"uaalyearestablished",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"506","Source for Asset Allocation","varchar","source_assetallocation",353,"source_assetallocation",NULL,"0","-1","2","137","static",NULL,NULL,NULL
+"483","Actuarial Valuation Date for GASB Schedules","date","actvaldate_gasbschedules",330,"actvaldate_gasbschedules",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"614","Source for Actuarial Liabilities","varchar","source_actliabilities",461,"source_actliabilities",NULL,"0","-1","2","141","static",NULL,NULL,NULL
+"430","Funding Method Note","varchar","fundingmeth_note",277,"fundingmeth_note",NULL,"0","-1","2","354","static",NULL,NULL,NULL
+"375","Type of Employees Covered","varchar","employeetypecovered",222,"employeetypecovered",NULL,"0","-1","2","143","static",NULL,NULL,NULL
+"377","Social Security Coverage Of Plan Members","varchar","socseccovered_verbatim",224,"socseccovered_verbatim",NULL,"0","-1","2","355","static",NULL,NULL,NULL
+"517","Data Source for Income Statement","varchar","source_incomestatement",364,"source_incomestatement",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"565","Data Source for Actuarial Costs","varchar","source_actcosts",412,"source_actcosts",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"359","Plan Name","varchar","planname",206,"planname",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"364","Data Source for Plan Basics","varchar","source_planbasics",211,"source_planbasics",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"367","Year Of Inception","varchar","planinceptionyear",214,"planinceptionyear",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"369","Year of Plan Closing","varchar","planyearclosed",216,"planyearclosed",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"371","State Abbreviation","varchar","stateabbrev",218,"stateabbrev",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"372","Full State Name","varchar","statename",219,"statename",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"373","Administrating Jurisdiction","varchar","govtname",220,"govtname",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"378","Cost Structure","varchar","coststructure",225,"coststructure",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"397","Benefits Website","varchar","benefitswebsite",244,"benefitswebsite",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"398","Reporting Date Notes","varchar","reportingdatenotes",245,"reportingdatenotes",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"357","Year","varchar","year",204,"year",NULL,"0","-1","2","356","static",NULL,NULL,NULL
+"10853","Experience Study File","varchar","experience_study_file",9808,"experience_study_file",NULL,"0",NULL,"3","362","static","",NULL,NULL
+"10851","Actuarial Valuation File","varchar","actuarial_valuation_file",9804,"actuarial_valuation_file",NULL,"0",NULL,"3","362","static","",NULL,NULL
+"10869","SEIR: Long-term Expected Rate of Return","percentage4","seir_arr",708,"seir_arr","1",NULL,NULL,"3","403","static",NULL,NULL,NULL
+"10870","SEIR: Municipal Bond Index at Prior MD","percentage4","seir_munipmd",709,"seir_munipmd","1",NULL,NULL,"3","403","static",NULL,NULL,NULL
+"10871","SEIR: Municipal Bond Index at Current MD","percentage4","seir_municmd",710,"seir_municmd","1",NULL,NULL,"3","403","static",NULL,NULL,NULL
+"542","Other Investment Expense","real","expense_otherinvestments",389,"expense_otherinvestments","1000","0","-1","2","148","static",NULL,NULL,NULL
+"543","Net Investments - Investment Expense","real","expense_investments",390,"expense_investments","1000","0","-1","2","148","static",NULL,NULL,NULL
+"10848","Total Employee Contributions","bigint","tec",NULL,"total_employee_contributions","1",NULL,NULL,"3","78","calculated","#2##+##1#",NULL,"done"
+"540","Private Equity Expense","real","expense_privateequity",387,"expense_privateequity","1000","0","-1","2","148","static",NULL,NULL,NULL
+"541","Alternatives Expense","real","expense_alternatives",388,"expense_alternatives","1000","0","-1","2","148","static",NULL,NULL,NULL
+"10872","SEIR: Year in which Fiduciary Net Position is Projected to be Depleted","int","seir_deplete",711,"seir_deplete","1",NULL,NULL,"3","403","static",NULL,NULL,NULL
+"10873","SEIR at Prior MD","percentage4","seir_pmd",712,"seir_pmd","1",NULL,NULL,"3","403","static",NULL,NULL,NULL
+"10874","SEIR for Current MD","percentage4","seir_cmd",713,"seir_cmd","1",NULL,NULL,"3","403","static",NULL,NULL,NULL
+"10875","Total Pension Liability ","int_separated3","tpl",714,"tpl","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10876","Fiduciary Net Position","int_separated3","fnp",715,"fnp","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10877","Net Pension Liability","int_separated3","npl",716,"npl","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10878","GASB 67/68 Funded Ratio","percentage4","fundedratio_gasb68",717,"fundedratio_gasb68","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10879","Covered Payroll","int_separated3","gasb_payroll",718,"gasb_payroll","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10880","Pension Expense","int_separated3","pe_total",719,"pe_total","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10881","Deferred Outflows of Resources","int_separated3","gasb_outflow",720,"gasb_outflow","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10882","Deferred Inflows of Resources","int_separated3","gasb_inflow",721,"gasb_inflow","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10883","Actuarially Determined Employer Contribution (GASB 67/68)","percentage4","adec_pct",722,"adec_pct","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10884","Total ADEC Paid (GASB 67/68)","percentage4","adec_paidpct",723,"adec_paidpct","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10885","Actuarially Determined Employer Contribution (GASB 67/68)","int_separated3","adec_amt",724,"adec_amt","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10886","Total ADEC Paid (GASB 67/68)","int_separated3","adec_paidamt",725,"adec_paidamt","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10887","Total ADEC Missed (GASB 67/68)","int_separated3","adec_missed",726,"adec_missed","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10889","PE: Service Cost at end of year","int_separated3","pe_servicecost",728,"pe_servicecost","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10890","PE: Interest on TPL","int_separated3","pe_interesttpl",729,"pe_interesttpl","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10891","PE: Current-period benefit term changes","int_separated3","pe_currentchanges",730,"pe_currentchanges","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10892","PE: Expensed portion of current period difference between expected and actual experience in the TPL","int_separated3","pe_expenseddifferenceexperience",731,"pe_expenseddifferenceexperience","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10893","PE: Expensed portion of current-period assumption changes","int_separated3","pe_expensedcurrentassumption",732,"pe_expensedcurrentassumption","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10894","PE: Employee contributions including service purchases","int_separated3","pe_employeecontribution",733,"pe_employeecontribution","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10895","PE: Projected earnings on plan investment","int_separated3","pe_projectedearnings",734,"pe_projectedearnings","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10896","PE: Expensed portion of current-period difference between projected and actual earnings on plan investments","int_separated3","pe_expenseddifferenceearnings",735,"pe_expenseddifferenceearnings","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10897","PE: Administrative expenses","int_separated3","pe_adminex",736,"pe_adminex","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10898","PE: Recognition of beginning Deferred Outflows of Resources","int_separated3","pe_outflow",737,"pe_outflow","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10899","PE: Recognition of beginning Deferred Inflows of Resources","int_separated3","pe_inflow",738,"pe_inflow","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10900","PE: Total Pension Expense","int_separated3","pe_totalcalc",739,"pe_totalcalc","1",NULL,NULL,"3","405","static",NULL,NULL,NULL
+"10901","Sensitivity Analysis: 1% Decrease (Rate)","percentage4","sensitivityrate_100bpdown",740,"sensitivityrate_100bpdown","1",NULL,NULL,"3","406","static",NULL,NULL,NULL
+"10902","Sensitivity Analysis: Current Discount Rate (Rate)","percentage4","sensitivityrate_actual",741,"sensitivityrate_actual","1",NULL,NULL,"3","406","static",NULL,NULL,NULL
+"10903","Sensitivity Analysis: 1% Increase (Rate)","percentage4","sensitivityrate_100bpup",742,"sensitivityrate_100bpup","1",NULL,NULL,"3","406","static",NULL,NULL,NULL
+"10904","Sensitivity Analysis: 1% Decrease (Dollar)","int_separated3","sensitivitydollar_100bpdown",743,"sensitivitydollar_100bpdown","1",NULL,NULL,"3","406","static",NULL,NULL,NULL
+"10905","Sensitivity Analysis: Current Discount Rate (Dollar)","int_separated3","sensitivitydollar_actual",744,"sensitivitydollar_actual","1",NULL,NULL,"3","406","static",NULL,NULL,NULL
+"10906","Sensitivity Analysis: 1% Increase (Dollar)","int_separated3","sensitivitydollar_100bpup",745,"sensitivitydollar_100bpup","1",NULL,NULL,"3","406","static",NULL,NULL,NULL
+"10907","Expected Remaining Service Life","#N/A","servicelife",746,"servicelife","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10909","Service Cost","int_separated3","apxa_servicecost",748,"apxa_servicecost","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10910","Interest","int_separated3","apxa_interest",749,"apxa_interest","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10911","Benefit Term Changes","int_separated3","apxa_benefitchanges",750,"apxa_benefitchanges","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10912","Differences Between Expected and Actual Experience","int_separated3","apxa_experiencediff",751,"apxa_experiencediff","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10913","Assumption Changes","int_separated3","apxa_assumptionchanges",752,"apxa_assumptionchanges","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10914","Employer Contributions","int_separated3","apxa_employercontribution",753,"apxa_employercontribution","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10915","Employee Contributions, Including Service Purchases","int_separated3","apxa_employeecontribution",754,"apxa_employeecontribution","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10916","Net Investment Income, Including Net Securities Lending Income","int_separated3","apxa_investincome",755,"apxa_investincome","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10917","Benefit Payments, Not Including Refunds","int_separated3","apxa_benefitpayment",756,"apxa_benefitpayment","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10918","Refund Payments","int_separated3","apxa_refunds",757,"apxa_refunds","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10919","Benefit Payments, Including Member Refunds","int_separated3","apxa_benefitsrefunds",758,"apxa_benefitsrefunds","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10920","Administrative Expenses","int_separated3","apxa_adminex",759,"apxa_adminex","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10921","Other Changes","int_separated3","apxa_otherchanges",760,"apxa_otherchanges","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10908","Balances at Prior MD","int_separated3","apxa_startbalance_assets",747,"apxa_startbalance","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10922","Other Changes, Notes Describing","text","apxa_desc",761,"apxa_desc","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10923","Changes at Current MD","int_separated3","apxa_currentbalance",762,"apxa_currentbalance","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10924","Normal Cost, Total","percentage4","nc_total",763,"nc_total","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10925","Normal Cost, Employer","percentage4","nc_er",764,"nc_er","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10926","Normal Cost, Employee","percentage4","nc_ee",765,"nc_ee","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10927","Is a Normal Cost Breakdown Provided?","percentage4","nc_breakdown",766,"nc_breakdown","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10928","Amortization Payment, Total","percentage4","amo_total",767,"amo_total","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10929","Amortization Payment, Employer","percentage4","amo_er",768,"amo_er","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10930","Amortization Payment, Employee","percentage4","amo_ee",769,"amo_ee","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10931","Health Care Premium (ex. 401h), Employer","percentage4","hc_er",770,"hc_er","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10932","Health Care Premium (ex. 401h), Employee","percentage4","hc_ee",771,"hc_ee","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10933","DB Employer Contribution, Total","percentage4","er_total",772,"er_total","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10934","DB Employee Contribution, Total","percentage4","ee_total",773,"ee_total","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10935","DB Multiplier, Single Rate or Range?","text","multiplier_basis",774,"multiplier_basis","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10936","DB Multiplier, Single Rate","text","multiplier_rate",775,"multiplier_rate","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10937","DB Multiplier Rate, Minimum","text","multiplier_min",776,"multiplier_min","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10938","DB Multiplier Rate, Maximum","text","multiplier_max",777,"multiplier_max","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10939","Sum of Age and Service Years at which Member Becomes Eligible for Full Benefits","text","rule_of_years",778,"rule_of_years","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10940","DB Multiplier Cap","text","multiplier_cap",779,"multiplier_cap","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10941","COLA or PBI Offered?","yesno","cola",780,"cola","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10942","COLA Benefit: Percentage Range, Percentage Maximum, CPI Anchor, Adhoc","text","cola_benefit_type",781,"cola_benefit_type","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10943","Maximum COLA","text","cola_benefit_max_pct",782,"cola_benefit_max_pct","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10944","DROP Offered to Current Actives and Retirees?","yesno","drop_current",783,"drop_current","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10945","DROP Available for New Hires?","yesno","drop_newhire",784,"drop_newhire","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10946","DROP Account Guaranteed Rate of Return","text","drop_guaranteedrate",785,"drop_guaranteedrate","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10947","Employees Are Covered by Social Security (Yes, No, Mix)","text","soc_sec",786,"soc_sec","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10948","Are Active Member Health Benefits Funded Thru Plan (ex. 401a, or health insurance supplement)","text","healthcare_fundedbyplan",787,"healthcare_fundedbyplan","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10949","DB Plan Associated With a Hybrid DC?","text","db_hybrid",788,"db_hybrid","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10950","Is there a Primary Benefit Defined Contribution Plan (i.e. not part of a hybrid, replaces any DB plan benefit) Available to Members?","text","option_primarydc",789,"option_primarydc","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10951","Is there a Supplemental Defined Contribution Plan (i.e. a 457 or 403b) Available to Members Through the Retirement System?","text","option_suppdc",790,"option_suppdc","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10952","If there is a Primary Defined Contribution Plan, is this the Default Retirement Plan for New Hires?","text","option_defaultdc",791,"option_defaultdc","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10953","If there is an Optional Primary Defined Contribution Plan (i.e. not the default), is Participation in this Benefit Mutually Exclusive from Participating in a Defined Benefit?","text","option_mutexcldc",792,"option_mutexcldc","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10954","Inflation Rate Assumption","text","assum_inflation",793,"assum_inflation","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10955","Interest Rate Assumption","text","assum_interest",794,"assum_interest","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10956","Payroll Growth Assumption, Single Rate","text","assum_payrollgrowth",795,"assum_payrollgrowth","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10957","Payroll Growth Assumption, Lower Bound","text","assum_payrollgrowth_lowerbound",796,"assum_payrollgrowth_lowerbound","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10958","Payroll Growth Assumption, Upper Bound","text","assum_payrollgrowth_upperbound",797,"assum_payrollgrowth_upperbound","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10959","Salary / Wage Growth Assumption, Single Rate","text","assum_salarygrowth",798,"assum_salarygrowth","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10960","Salary / Wage Growth Assumption, Lower Bound","text","assum_salarygrowth_lowerbound",799,"assum_salarygrowth_lowerbound","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10961","Salary / Wage Growth Assumption, Upper Bound","text","assum_salarygrowth_upperbound",800,"assum_salarygrowth_upperbound","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10962","Separation / Termination Rate Assumption (if single value)","text","assum_terminationrate",801,"assum_terminationrate","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10963","Page Location of Separation / Termination Rate Assumption Table","text","assum_terminationpage",802,"assum_terminationpage","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10964","Retirement Rate Assumption (if single value)","text","assum_retirementrate",803,"assum_retirementrate","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10965","Page Location of Retirement Rate Assumption Table","text","assum_retirementpage",804,"assum_retirementpage","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10966","Is a Single Mortality Table Used for All Employees?","text","assum_single_mortality_table",805,"assum_single_mortality_table","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10967","Mortality Table","text","assum_mortality_table",806,"assum_mortality_table","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10968","Mortality Table Version Year","text","assum_mortality_table_year",807,"assum_mortality_table_year","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10969","Mortality Table Projection Scale","text","assum_mortality_projecton_scale",808,"assum_mortality_projecton_scale","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10970","Mortalility Table SetBack in Months","text","assum_mortality_table_setback",809,"assum_mortality_table_setback","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10971","Mortalility Table SetForward in Months","text","assum_mortality_table_setforward",810,"assum_mortality_table_setforward","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10973","Number of Years Remaining on Amortization Schedule","text","amoyears",812,"amoyears","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10974","Actuarial Cost Method in Funding Policy, CAFR (EAN, PUC, AGC, FIL)","text","costmethod_funding",813,"costmethod_funding","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10975","Actuarial Cost Method in Valaution (EAN, PUC, AGC, FIL)","text","costmethod_valuation",814,"costmethod_valuation","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10976","Discount Rate Assumption","text","assum_discountrate",815,"assum_discountrate","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10977","Does the Plan Apply Different Discount Rates to Different Sets of Liabilities?","text","assum_variabledr",816,"assum_variabledr","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10978","Rate of Return Assumption","text","assum_returnrate",817,"assum_returnrate","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10979","Number of Years Used for Smoothing Actuarial Return","text","smoothing",818,"smoothing","1",NULL,NULL,"3","413","static",NULL,NULL,NULL
+"10980","Actuarial Investment Return (AVA Basis)","text","actuarial_return",819,"actuarial_return","1",NULL,NULL,"3","414","static",NULL,NULL,NULL
+"10981","Market Investment Return (MVA Basis)","text","market_return",820,"market_return","1",NULL,NULL,"3","414","static",NULL,NULL,NULL
+"10982","Are OPEB data reported in the CAFR?","yesno","opeb_cafr",821,"opeb_cafr","1",NULL,NULL,"3","415","static",NULL,NULL,NULL
+"10983","Are OPEB data reported in the Val Report?","yesno","opeb_val",822,"opeb_val","1",NULL,NULL,"3","415","static",NULL,NULL,NULL
+"10984","Actuarially Required Contribution (GASB 25)","int_separated3","arc",832,"arc","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10985","Total ARC Paid (GASB 25)","int_separated3","arc_paid",833,"arc_paid","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10987","Percent of ARC Paid (GASB 25)","percentage4","arc_pct",835,"arc_pct","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10988","ARC as a Percent of Payroll","percentage4","arcpct_payroll",836,"arcpct_payroll","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10989","Actuarial Value of Assets","int_separated3","ava",837,"ava","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10990","Actuarial Acrrued Liability","int_separated3","aal",838,"aal","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10991","Unfunded Accrued Liability","int_separated3","ual",839,"ual","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10992","GASB 25 Funded Ratio","percentage4","fundedratio_old",840,"fundedratio_old","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10993","Covered Payroll","int_separated3","payroll",841,"payroll","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"10986","Total ARC Missed (GASB 25)","int_separated3","arc_missed",834,"arc_missed","1",NULL,NULL,"3","416","static","",NULL,NULL
+"10996","Market Value of Assets","int_separated3","mva",844,"mva","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"10997","Market Value Funded Ratio","percentage4","fundedratio_mva",845,"fundedratio_mva","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"10998","Total Actuarial Gain/Loss","int_separated3","gainloss_tot",846,"gainloss_tot","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"10999","Benefit Payments","int_separated3","outflows_benefits",847,"outflows_benefits","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"11000","Refunds","int_separated3","outflows_refunds",848,"outflows_refunds","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"11001","Administrative Expenses","int_separated3","outflows_admin",849,"outflows_admin","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"11002","All Other Outflows","int_separated3","outflows_other",850,"outflows_other","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"11003","Total Outflow (Benefits + Refunds + Admin)","int_separated3","outflows_total",851,"outflows_total","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"11004","ARC as a Percent of Payroll","percentage4","arcpct_payroll_reason",836,"arcpct_payroll_reason","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10972","Amortizaton Method: Level percent of payroll ('Level Percent'), level dollar ('Level Dollar'); 'Open' or 'Closed'","text","amomethod",811,"amomethod","1",NULL,NULL,"3","413","static","",NULL,NULL
+"11013","Employer Allocation Percentage","percentage4","employer_allocation_percentage",891,"employer_allocation_percentage","1","0",NULL,"3","404","static","",NULL,NULL
+"11014","NPL at 1% Higher Discount Rate","int_separated3","npl_at_discount_rate_plus_1",894,"npl_at_discount_rate_plus_1","1","0",NULL,"3","404","static","",NULL,NULL
+"11015","NPL at 1% Lower Discount Rate","int_separated3","npl_at_discount_rate_minus_1",895,"npl_at_discount_rate_minus_1","1","0",NULL,"3","404","static","",NULL,NULL
+"11005","Actuarially Determined Employer Contribution (GASB 67/68) as a Percent of Payroll","percentage4","adec_pct_reason",722,"adec_pct_reason","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"11009","Comprehensive Annual Financial Report",NULL,"10000001",NULL,NULL,"1000","0",NULL,"3","362","static","",NULL,NULL
+"11010","Actuarial Valuation",NULL,"10000002",NULL,NULL,"1000","0",NULL,"3","362","static","",NULL,NULL
+"632","PPD Directory Listed","varchar","ppd_directory_listed",479,"ppd_directory_listed",NULL,"0","-1","2",NULL,"static",NULL,NULL,NULL
+"672","Percent of assets invested in other investments","real","OtherTotal_Actl",519,"OtherTotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"635","10-year return, average","real","AvgReturn_10yr",482,"AvgReturn_10yr","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"645","	Deductions - other total","real","expense_other_tot",492,"expense_other_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"482","Actuarial Funded Ratio (GASB 67)","real","actfundedratio_gasb67",329,"actfundedratio_gasb67","1","0","-1","2","357","static",NULL,NULL,NULL
+"463","Funded Ratio Under GASB Standards","real","actfundedratio_gasb",310,"actfundedratio_gasb","1","0","-1","2","357","static",NULL,NULL,NULL
+"480","Was Funded Ratio Estimated By CRR ?","real","actfundedratio_est",327,"actfundedratio_est","1","0","-1","2","357","static",NULL,NULL,NULL
+"566","Fiscal Year in which ARC/ADEC is to be Paid","real","contributionfy",413,"contributionfy","1","0","-1","2","78","static",NULL,NULL,NULL
+"524","Member Service Purchase","real","contrib_ee_purchaseservice",371,"contrib_ee_purchaseservice","1","0","-1","2","78","static",NULL,NULL,NULL
+"462","Actuarial Accrued Liabilities Under GASB Standards","real","actliabilities_gasb",309,"actliabilities_gasb","1000","100","-1","2","141","static","",NULL,NULL
+"476","Covered Payroll - GASB 67","real","coveredpayroll_gasb67",323,"coveredpayroll_gasb67","1000","0","-1","2","157","static",NULL,NULL,NULL
+"522","Employer Contributions","real","contrib_er_regular",369,"contrib_er_regular","1000","0","-1","2","78","static",NULL,NULL,NULL
+"523","State Contributions","real","contrib_er_state",370,"contrib_er_state","1000","0","-1","2","78","static",NULL,NULL,NULL
+"465","Other Liability","real","actliabilities_other",312,"actliabilities_other","1000","0","-1","2","141","static",NULL,NULL,NULL
+"514","Percent of Assets Invested in Cash & Short Term Instruments","real","cashandshortterm",361,"cashandshortterm","1","0","-1","2","137","static",NULL,NULL,NULL
+"508","Percent of Assets Invested in US Equities","real","equities_domestic",355,"equities_domestic","1","0","-1","2","137","static",NULL,NULL,NULL
+"492","10-Yr Investment Return","real","investmentreturn_10yr",339,"investmentreturn_10yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"354","PPD ID","bigint","id",201,"id","1","0","-1","2","356","static",NULL,NULL,NULL
+"500","Reported Investment Returns","real","grossreturns",347,"grossreturns","1","0","-1","2","137","static",NULL,NULL,NULL
+"501","Geometric Return Since 2001","real","georeturn_est",348,"georeturn_est","1","0","-1","2","137","static",NULL,NULL,NULL
+"502","Geometric Growth Since 2001","real","geogrowth_est",349,"geogrowth_est","1","0","-1","2","137","static",NULL,NULL,NULL
+"485","1-Yr Investment Return","real","investmentreturn_1yr",332,"investmentreturn_1yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"486","2-Yr Investment Return","real","investmentreturn_2yr",333,"investmentreturn_2yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"487","3-Yr Investment Return","real","investmentreturn_3yr",334,"investmentreturn_3yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"488","4-Yr Investment Return","real","investmentreturn_4yr",335,"investmentreturn_4yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"489","5-Yr Investment Return","real","investmentreturn_5yr",336,"investmentreturn_5yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"490","7-Yr Investment Return","real","investmentreturn_7yr",337,"investmentreturn_7yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"491","8-Yr Investment Return","real","investmentreturn_8yr",338,"investmentreturn_8yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"493","12-Yr Investment Return","real","investmentreturn_12yr",340,"investmentreturn_12yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"494","15-Yr Investment Return","real","investmentreturn_15yr",341,"investmentreturn_15yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"495","20-Yr Investment Return","real","investmentreturn_20yr",342,"investmentreturn_20yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"496","25-Yr Investment Return","real","investmentreturn_25yr",343,"investmentreturn_25yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"497","30-Yr Investment Return","real","investmentreturn_30yr",344,"investmentreturn_30yr","1","0","-1","2","137","static",NULL,NULL,NULL
+"503","Estimated 1-Yr Investment Return","real","investmentreturn_1yr_est",350,"investmentreturn_1yr_est","1","0","-1","2","137","static",NULL,NULL,NULL
+"504","Estimated 5-Yr Investment Return","real","investmentreturn_5yr_est",351,"investmentreturn_5yr_est","1","0","-1","2","137","static",NULL,NULL,NULL
+"505","Estimated 10-Yr Investment Return","real","investmentreturn_10yr_est",352,"investmentreturn_10yr_est","1","0","-1","2","137","static",NULL,NULL,NULL
+"532","Dividend Income","real","income_dividends",379,"income_dividends","1000","0","-1","2","83","static",NULL,NULL,NULL
+"533","Net Investments - Interest And Dividends","real","income_interestanddividends",380,"income_interestanddividends","1000","0","-1","2","83","static",NULL,NULL,NULL
+"534","Real Estate Income","real","income_realestate",381,"income_realestate","1000","0","-1","2","83","static",NULL,NULL,NULL
+"535","Private Equity Income","real","income_privateequity",382,"income_privateequity","1000","0","-1","2","83","static",NULL,NULL,NULL
+"544","Securities Lending Interest","real","income_securitieslending",391,"income_securitieslending","1000","0","-1","2","83","static",NULL,NULL,NULL
+"547","Other Additions","real","income_otheradditions",394,"income_otheradditions","1000","0","-1","2","83","static",NULL,NULL,NULL
+"548","Total Additions","real","income_net",395,"income_net","1000","0","-1","2","83","static",NULL,NULL,NULL
+"550","Deductions - Retirement Benefits","real","expense_retbenefits",397,"expense_retbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"552","Deductions - Death Benefits","real","expense_deathbenefits",399,"expense_deathbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"553","Deductions - Drop Benefits","real","expense_dropbenefits",400,"expense_dropbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"555","Deductions - COLA Benefit","real","expense_colabenefits",402,"expense_colabenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"556","Deductions - Lump Sum Benefits","real","expense_lumpsumbenefits",403,"expense_lumpsumbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"557","Deductions - Other Benefits","real","expense_otherbenefits",404,"expense_otherbenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"558","Deductions - Refunds/Withdrawals","real","expense_refunds",405,"expense_refunds","1000","0","-1","2","148","static",NULL,NULL,NULL
+"560","Deductions - Depreciation","real","expense_depreciation",407,"expense_depreciation","1000","0","-1","2","148","static",NULL,NULL,NULL
+"561","Deductions - Other","real","expense_otherdeductions",408,"expense_otherdeductions","1000","0","-1","2","148","static",NULL,NULL,NULL
+"562","Deductions - Total","real","expense_net",409,"expense_net","1000","0","-1","2","148","static",NULL,NULL,NULL
+"530","Net Change in Fair Value of Real Estate Investments","real","fairvaluechange_realestate",377,"fairvaluechange_realestate","1000","0","-1","2","137","static",NULL,NULL,NULL
+"531","Interest Income","real","income_interest",378,"income_interest","1000","0","-1","2","83","static",NULL,NULL,NULL
+"567","Total Normal Cost Rate","real","normcostrate_tot",414,"normcostrate_tot","1","0","-1","2","78","static",NULL,NULL,NULL
+"568","Member Contribution Rate","real","normcostrate_ee",415,"normcostrate_ee","1","0","-1","2","78","static",NULL,NULL,NULL
+"569","Employer Normal Cost Rate","real","normcostrate_er",416,"normcostrate_er","1","0","-1","2","78","static",NULL,NULL,NULL
+"577","Was Total Normal Cost Rate Estimated by CRR ?","real","normcostrate_tot_est",424,"normcostrate_tot_est","1","0","-1","2","78","static",NULL,NULL,NULL
+"579","Was Employer Normal Cost Rate Estimated by CRR ?","real","normcostrate_er_est",426,"normcostrate_er_est","1","0","-1","2","78","static",NULL,NULL,NULL
+"578","Was Estimated Member Contribution Rate Estimated by CRR ?","real","normcostrate_ee_est",425,"normcostrate_ee_est","1","0","-1","2","78","static",NULL,NULL,NULL
+"516","Percent of Assets Invested in Other","real","other",363,"other","1","0","-1","2","137","static",NULL,NULL,NULL
+"468","Percent of Employer Required Contribution Paid","real","percentreqcontpaid",315,"percentreqcontpaid","1","0","-1","2","78","static",NULL,NULL,NULL
+"470","Percent of ARC Paid","real","percentarcpaid",317,"percentarcpaid","1","0","-1","2","78","static",NULL,NULL,NULL
+"477","Percent of ADEC Paid","real","percentadec",324,"percentadec","1","0","-1","2","141","static",NULL,NULL,NULL
+"481","Was Employer Annual Required Contribution Estimated By CRR ?","real","requiredcontribution_est",328,"requiredcontribution_est","1","0","-1","2","78","static",NULL,NULL,NULL
+"570","Employer Projected Actuarial Required Contribution Rate","real","reqcontrate_er",417,"reqcontrate_er","1","0","-1","2","78","static",NULL,NULL,NULL
+"571","Total Projected Actuarial Required Contribution Rate","real","reqcontrate_tot",418,"reqcontrate_tot","1","0","-1","2","78","static",NULL,NULL,NULL
+"580","Was Employer Projected Actuarial Required Contribution Rate Estimated by CRR ?","real","reqcontrate_er_est",427,"reqcontrate_er_est","1","0","-1","2","78","static",NULL,NULL,NULL
+"513","Percent of Assets Invested In Real Estate","real","realestate",360,"realestate","1","0","-1","2","137","static",NULL,NULL,NULL
+"453","Payroll Growth Assumption","real","payrollgrowthassumption",300,"payrollgrowthassumption","1","0","-1","2","354","static",NULL,NULL,NULL
+"451","Funding Method Code #1 for Plan Reporting","real","fundmethcode_1",298,"fundmethcode_1","1","0","-1","2","354","static",NULL,NULL,NULL
+"452","Funding Method Code #2 for Plan Reporting","real","fundmethcode_2",299,"fundmethcode_2","1","0","-1","2","354","static",NULL,NULL,NULL
+"448","Upper Corridor for Market vs. Actuarial Assets","real","uppercorridor",295,"uppercorridor","1","0","-1","2","354","static",NULL,NULL,NULL
+"449","Lower Corridor for Market vs. Actuarial Assets","real","lowercorridor",296,"lowercorridor","1","0","-1","2","354","static",NULL,NULL,NULL
+"450","Actuarial Cost Method Code Names","real","actcostmethcode",297,"actcostmethcode","1","0","-1","2","354","static",NULL,NULL,NULL
+"455","Remaining Amortization Period","real","remainingamortperiod",302,"remainingamortperiod","1","0","-1","2","354","static",NULL,NULL,NULL
+"355","Plan Annual ID","bigint","plan_annual_id",202,"plan_annual_id","1","0","-1","2","356","static",NULL,NULL,NULL
+"592","Total Number Of Inactive Vested","real","inactivevestedmembers",439,"inactivevestedmembers","1","0","-1","2","143","static",NULL,NULL,NULL
+"587","Total Number Of Actives","real","actives_tot",434,"actives_tot","1","0","-1","2","143","static",NULL,NULL,NULL
+"536","Alternatives Income","real","income_alternatives",383,"income_alternatives","1000","0","-1","2","83","static",NULL,NULL,NULL
+"537","International Income","real","income_international",384,"income_international","1000","0","-1","2","83","static",NULL,NULL,NULL
+"538","Other Investment Income","real","income_otherinvestments",385,"income_otherinvestments","1000","0","-1","2","83","static",NULL,NULL,NULL
+"564","Net Assets","real","mktassets_net",411,"mktassets_net","1000","0","-1","2","137","static",NULL,NULL,NULL
+"572","Total Normal Cost Amount","real","normcostamount_tot",419,"normcostamount_tot","1000","0","-1","2","78","static",NULL,NULL,NULL
+"471","Total Pension Liability","real","totalpensionliability",318,"totalpensionliability","1000","0","-1","2","141","static",NULL,NULL,NULL
+"574","Employer Normal Cost Amount","real","normcostamount_er",421,"normcostamount_er","1000","0","-1","2","78","static",NULL,NULL,NULL
+"575","Employer Projected Actuarial Required Contribution Amount","real","reqcontamount_er",422,"reqcontamount_er","1000","0","-1","2","78","static",NULL,NULL,NULL
+"576","Total Projected Actuarial Required Contribution Amount","real","reqcontamount_tot",423,"reqcontamount_tot","1000","0","-1","2","78","static",NULL,NULL,NULL
+"581","Projected Payroll","real","projectedpayroll",428,"projectedpayroll","1000","0","-1","2","157","static",NULL,NULL,NULL
+"588","Total Amount Of Active Salaries (Payroll)","real","activesalaries",435,"activesalaries","1000","0","-1","2","143","static",NULL,NULL,NULL
+"615","Present Value of Inactive Non-Vested Future Benefits","real","pvfb_inactivenonvested",462,"pvfb_inactivenonvested","1000","0","-1","2","141","static",NULL,NULL,NULL
+"616","Present Value of Active Future Benefits","real","pvfb_active",463,"pvfb_active","1000","0","-1","2","141","static",NULL,NULL,NULL
+"617","Present Value of Inactive Vested Future Benefits","real","pvfb_inactivevested",464,"pvfb_inactivevested","1000","0","-1","2","141","static",NULL,NULL,NULL
+"618","Present Value of Retiree Future Benefits","real","pvfb_retiree",465,"pvfb_retiree","1000","0","-1","2","141","static",NULL,NULL,NULL
+"619","Present Value of Other Future Benefits","real","pvfb_other",466,"pvfb_other","1000","0","-1","2","141","static",NULL,NULL,NULL
+"473","Net Pension Liability","real","netpensionliability",320,"netpensionliability","1000","0","-1","2","141","static",NULL,NULL,NULL
+"624","Present Value of Future Salaries","real","pvfs",471,"pvfs","1000","0","-1","2","141","static",NULL,NULL,NULL
+"623","Present Value of Future Employer Normal Costs","real","pvfnc_er",470,"pvfnc_er","1000","0","-1","2","141","static",NULL,NULL,NULL
+"622","Present Value of Future Member Contributions","real","pvfnc_ee",469,"pvfnc_ee","1000","0","-1","2","141","static",NULL,NULL,NULL
+"621","Total Present Value of Future Normal Costs","real","pvfnc_tot",468,"pvfnc_tot","1000","0","-1","2","141","static",NULL,NULL,NULL
+"620","Present Value of Total Costs","real","pvfb_tot",467,"pvfb_tot","1000","0","-1","2","141","static",NULL,NULL,NULL
+"573","Member Contribution Amount","real","normcostamount_ee",420,"normcostamount_ee","1000","0","-1","2","78","static",NULL,NULL,NULL
+"589","Average Age Of Actives","real","activeage_avg",436,"activeage_avg","1","0","-1","2","143","static",NULL,NULL,NULL
+"590","Average Tenure Of Actives","real","activetenure_avg",437,"activetenure_avg","1","0","-1","2","143","static",NULL,NULL,NULL
+"593","Total Number Of Inactive Non-Vested","real","inactivenonvested",440,"inactivenonvested","1","0","-1","2","143","static",NULL,NULL,NULL
+"594","Total Number Of Beneficiaries","real","beneficiaries_tot",441,"beneficiaries_tot","1","0","-1","2","143","static",NULL,NULL,NULL
+"596","Average Age Of Beneficiaries","real","beneficiaryage_avg",443,"beneficiaryage_avg","1","0","-1","2","143","static",NULL,NULL,NULL
+"598","Total Number Of Service Retirees","real","beneficiaries_serviceretirees",445,"beneficiaries_serviceretirees","1","0","-1","2","143","static",NULL,NULL,NULL
+"600","Average Age Of Service Retirees","real","serviceretireeage_avg",447,"serviceretireeage_avg","1","0","-1","2","143","static",NULL,NULL,NULL
+"602","Average Age At Retirement For Service Retirees","real","serviceretage_avg",449,"serviceretage_avg","1","0","-1","2","143","static",NULL,NULL,NULL
+"603","Average Tenure At Retirement For Service Retirees","real","servicerettenure_avg",450,"servicerettenure_avg","1","0","-1","2","143","static",NULL,NULL,NULL
+"606","Total Number Of Survivor Beneficiaries","real","beneficiaries_survivors",453,"beneficiaries_survivors","1","0","-1","2","143","static",NULL,NULL,NULL
+"607","Total Number Of Spousal Survivor Beneficiaries","real","beneficiaries_spousalsurvivors",454,"beneficiaries_spousalsurvivors","1","0","-1","2","143","static",NULL,NULL,NULL
+"414","Investment Return Assumption for GASB Reporting","real","investmentreturnassumption_gasb",261,"investmentreturnassumption_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"415","Actuarial Cost Method Code Names for GASB","real","actcostmethcode_gasb",262,"actcostmethcode_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"416","Asset Valuation Method Code for GASB Reporting","real","assetvalmethcode_gasb",263,"assetvalmethcode_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"436","Gain Loss Concept","real","gainlossconcept",283,"gainlossconcept","1","0","-1","2","354","static",NULL,NULL,NULL
+"437","Gain Loss Base #1","real","gainlossbase_1",284,"gainlossbase_1","1","0","-1","2","354","static",NULL,NULL,NULL
+"438","Gain Loss Base #2","real","gainlossbase_2",285,"gainlossbase_2","1","0","-1","2","354","static",NULL,NULL,NULL
+"440","Gain Loss Period","real","gainlossperiod",287,"gainlossperiod","1","0","-1","2","354","static",NULL,NULL,NULL
+"441","Percent of Gain/Loss to be Phased-in This Year","real","phaseinpercent",288,"phaseinpercent","1","0","-1","2","354","static",NULL,NULL,NULL
+"442","Gain/Loss Periods Phased In for Asset Smoothing","real","phaseinperiods",289,"phaseinperiods","1","0","-1","2","354","static",NULL,NULL,NULL
+"443","Gain/Loss Values Used in Smoothing","real","phaseintype",290,"phaseintype","1","0","-1","2","354","static",NULL,NULL,NULL
+"444","Gain Loss Recognition","real","gainlossrecognition",291,"gainlossrecognition","1","0","-1","2","354","static",NULL,NULL,NULL
+"445","Asset Smoothing Baseline","real","assetsmoothingbaseline",292,"assetsmoothingbaseline","1","0","-1","2","354","static",NULL,NULL,NULL
+"446","Expected Return Method","real","expectedreturnmethod",293,"expectedreturnmethod","1","0","-1","2","354","static",NULL,NULL,NULL
+"447","Asset Smoothing Baseline Add or Subtract Gain/Loss","real","addsubtractgainloss",294,"addsubtractgainloss","1","0","-1","2","354","static",NULL,NULL,NULL
+"413","Inflation Rate Assumption for GASB Reporting","real","inflationassumption_gasb",260,"inflationassumption_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"384","Covers State Employees","bigint","coversstateemployees",231,"coversstateemployees","1","0","-1","2","143","static",NULL,NULL,NULL
+"385","Covers Local Employees","bigint","coverslocalemployees",232,"coverslocalemployees","1","0","-1","2","143","static",NULL,NULL,NULL
+"386","Covers Teachers","bigint","coversteachers",233,"coversteachers","1","0","-1","2","143","static",NULL,NULL,NULL
+"387","Covers State General Employees","bigint","stategenee",234,"stategenee","1","0","-1","2","143","static",NULL,NULL,NULL
+"388","Covers Local General Employees","bigint","localgenee",235,"localgenee","1","0","-1","2","143","static",NULL,NULL,NULL
+"389","Covers State Police Employees","bigint","statepolice",236,"statepolice","1","0","-1","2","143","static",NULL,NULL,NULL
+"390","Covers Local Police Officers","bigint","localpolice",237,"localpolice","1","0","-1","2","143","static",NULL,NULL,NULL
+"391","Covers State Fire Employees","bigint","statefire",238,"statefire","1","0","-1","2","143","static",NULL,NULL,NULL
+"392","Covers Local Fire Fighters","bigint","localfire",239,"localfire","1","0","-1","2","143","static",NULL,NULL,NULL
+"393","Teacher Only Plan","bigint","teacher",240,"teacher","1","0","-1","2","143","static",NULL,NULL,NULL
+"394","School Employees","bigint","schoolees",241,"schoolees","1","0","-1","2","143","static",NULL,NULL,NULL
+"395","Include Judges or Attorneys","bigint","judgesattorneys",242,"judgesattorneys","1","0","-1","2","143","static",NULL,NULL,NULL
+"396","Covers Elected Officials","bigint","electedofficials",243,"electedofficials","1","0","-1","2","143","static",NULL,NULL,NULL
+"376","Are Most Members Covered by Social Security?","bigint","socseccovered",223,"socseccovered","1","0","-1","2","355","static",NULL,NULL,NULL
+"374","Plan Type","bigint","plantype",221,"plantype","1","0","-1","2","356","static",NULL,NULL,NULL
+"399","Employee Group Id","bigint","eegroupid",246,"eegroupid","1","0","-1","2","356","static",NULL,NULL,NULL
+"439","Current Gain/Loss Amount","real","gainloss",286,"gainloss","1","0","-1","2","354","static",NULL,NULL,NULL
+"591","Average Salary Of Actives","real","activesalary_avg",438,"activesalary_avg","1000","0","-1","2","143","static",NULL,NULL,NULL
+"597","Average Benefit Of Beneficiaries","real","beneficiarybenefit_avg",444,"beneficiarybenefit_avg","1000","0","-1","2","143","static",NULL,NULL,NULL
+"601","Average Benefit Paid To Service Retirees","real","serviceretireebenefit_avg",448,"serviceretireebenefit_avg","1000","0","-1","2","143","static",NULL,NULL,NULL
+"604","Average Annual Benefit At Retirement For Service Retirees","real","serviceretbenefit_avg",451,"serviceretbenefit_avg","1000","0","-1","2","143","static",NULL,NULL,NULL
+"605","Total Benefits Paid To Disability Retirees","real","benefits_disabilityretirees",452,"benefits_disabilityretirees","1000","0","-1","2","143","static",NULL,NULL,NULL
+"433","Net Flows Reported for Asset Smoothing","real","netflows_smooth",280,"netflows_smooth","1","0","-1","2","354","static",NULL,NULL,NULL
+"434","Asset Valuation Method Code for Plan Reporting","real","assetvalmethcode",281,"assetvalmethcode","1","0","-1","2","354","static",NULL,NULL,NULL
+"435","Smoothing Reset","real","smoothingreset",282,"smoothingreset","1","0","-1","2","354","static",NULL,NULL,NULL
+"417","Asset Smoothing Period for GASB Reporting","real","assetsmoothingperiod_gasb",264,"assetsmoothingperiod_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"418","Funding Method Code #1 for GASB Reporting","real","fundingmethcode1_gasb",265,"fundingmethcode1_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"419","Funding Method Code #2 for GASB Reporting","real","fundingmethcode2_gasb",266,"fundingmethcode2_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"421","Blended Discount Rate","real","blendeddiscountrate",268,"blendeddiscountrate","1","0","-1","2","354","static",NULL,NULL,NULL
+"356","PPD Plan ID","bigint","plan_id",203,"plan_id","1","0","-1","2","356","static",NULL,NULL,NULL
+"358","Public Plans Database Id","bigint","ppd_id",205,"ppd_id","1","0","-1","2","356","static",NULL,NULL,NULL
+"361","System ID","bigint","system_id",208,"system_id","1","0","-1","2","356","static",NULL,NULL,NULL
+"362","Valuation ID","bigint","valuationid",209,"valuationid","1","0","-1","2","356","static",NULL,NULL,NULL
+"365","Source Indicator","bigint","inpfs",212,"inpfs","1","0","-1","2","356","static",NULL,NULL,NULL
+"366","Fiscal Year Type","bigint","fiscalyeartype",213,"fiscalyeartype","1","0","-1","2","356","static",NULL,NULL,NULL
+"368","Closed Plan","bigint","planclosed",215,"planclosed","1","0","-1","2","356","static",NULL,NULL,NULL
+"370","Administering Government Type","bigint","administeringgovt",217,"administeringgovt","1","0","-1","2","356","static",NULL,NULL,NULL
+"457","Wage Inflation","real","wageinflation",304,"wageinflation","1","0","-1","2","354","static",NULL,NULL,NULL
+"631","Plan Level Data","bigint","planleveldata",478,"planleveldata","1","0","-1","2","356","static",NULL,NULL,NULL
+"379","Employer Type","bigint","employertype",226,"employertype","1","0","-1","2","356","static",NULL,NULL,NULL
+"380","Cost Sharing","bigint","costsharing",227,"costsharing","1","0","-1","2","356","static",NULL,NULL,NULL
+"381","State Employers","bigint","stateemployers",228,"stateemployers","1","0","-1","2","356","static",NULL,NULL,NULL
+"382","Local Employers","bigint","localemployers",229,"localemployers","1","0","-1","2","356","static",NULL,NULL,NULL
+"383","School Employers","bigint","schoolemployers",230,"schoolemployers","1","0","-1","2","356","static",NULL,NULL,NULL
+"400","Tier Id","bigint","tierid",247,"tierid","1","0","-1","2","356","static",NULL,NULL,NULL
+"401","CAFR Calendar Year","bigint","cafr_cy",248,"cafr_cy","1","0","-1","2","356","static",NULL,NULL,NULL
+"402","Actuarial Report Calendar Year","bigint","actrpt_cy",249,"actrpt_cy","1","0","-1","2","356","static",NULL,NULL,NULL
+"403","Confict Between CAFR and Actuarial Valuation","bigint","cafr_av_conflict",250,"cafr_av_conflict","1","0","-1","2","356","static",NULL,NULL,NULL
+"583","Unfunded Actuarial Accrued Liability Rate","real","uaalrate",430,"uaalrate","1","0","-1","2","78","static",NULL,NULL,NULL
+"630","No Actuarial Valuation","real","noav",477,"noav","1","0","-1","2","356","static",NULL,NULL,NULL
+"431","Market Assets Reported for Asset Smoothing","real","mktassets_smooth",278,"mktassets_smooth","1000","0","-1","2","354","static",NULL,NULL,NULL
+"432","Actuarial Assets Reported for Asset Smoothing","real","actassets_smooth",279,"actassets_smooth","1000","0","-1","2","354","static",NULL,NULL,NULL
+"461","Actuarial Assets under GASB standards","real","actassets_gasb",308,"actassets_gasb","1000","0","-1","2","356","static",NULL,NULL,NULL
+"420","Unfunded Liability Amortization Period for GASB Reporting","real","uaalamortperiod_gasb",267,"uaalamortperiod_gasb","1","0","-1","2","354","static",NULL,NULL,NULL
+"661","Targeted percent of assets invested in private equity","real","PETotal_Trgt",508,"PETotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"647","Annual return on total equity investments","real","EQTotal_Rtrn",494,"EQTotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"657","	Percent of assets invested in misc. alternatives","real","AltMiscTotal_Actl",504,"AltMiscTotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"650","Annual return on fixed income investments","real","FITotal_Rtrn",497,"FITotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"660","Percent of assets invested in private equity","real","PETotal_Actl",507,"PETotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"634","5-year return, average","real","AvgReturn_5yr",481,"AvgReturn_5yr","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"646","	Total Fund Benchmark Return","real","TotFund_BnchmrkRtrn",493,"TotFund_BnchmrkRtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"633","3-year return, average","real","AvgReturn_3yr",480,"AvgReturn_3yr","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"648","Percent of assets invested in equity investments (total)","real","EQTotal_Actl",495,"EQTotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"640","	Net Increase/(Decrease) in Fair Value of total investments","real","FairValueChange_tot",487,"FairValueChange_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"641","Interest and Divident Net Income - total","real","income_interest_dividends_tot",488,"income_interest_dividends_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"637","Beginning Market Assets - Net","real","BegMktAssets_net",484,"BegMktAssets_net","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"643","Securities Lending - total","real","SecLend_tot",490,"SecLend_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"638","Contributions - employer total","real","contrib_ER_tot",485,"contrib_ER_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"642","	Investment expense - total","real","expense_investments_tot",489,"expense_investments_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"651","Percent of assets invested in fixed income","real","FITotal_Actl",498,"FITotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"653","Annual return on real estate investments","real","RETotal_Rtrn",500,"RETotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"654","Percent of assets invested in real estate","real","RETotal_Actl",501,"RETotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"655","Targeted percent of assets invested in real estate","real","RETotal_Trgt",502,"RETotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"656","Annual return on misc. alternative investments","real","AltMiscTotal_Rtrn",503,"AltMiscTotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"658","Targeted percent of assets invested in misc. alternatives","real","AltMiscTotal_Trgt",505,"AltMiscTotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"662","Annual return on hedge fund investments","real","HFTotal_Rtrn",509,"HFTotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"659","Annual return on private equity investments","real","PETotal_Rtrn",506,"PETotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"673","Targeted percent of assets invested in other investments","real","OtherTotal_Trgt",520,"OtherTotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"671","Annual return on other investments","real","OtherTotal_Rtrn",518,"OtherTotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"670","Targeted percent of assets invested in cash","real","CashTotal_Trgt",517,"CashTotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"669","Percent of assets invested in cash","real","CashTotal_Actl",516,"CashTotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"668","Annual return on cash investments","real","CashTotal_Rtrn",515,"CashTotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"667","Targeted percent of assets invested in commodities","real","COMDTotal_Trgt",514,"COMDTotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"666","Percent of assets invested in commodities","real","COMDTotal_Actl",513,"COMDTotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"665","Annual return on commodity investments","real","COMDTotal_Rtrn",512,"COMDTotal_Rtrn","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"664","Targeted percent of assets invested in hedge funds","real","HFTotal_Trgt",511,"HFTotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"663","Percent of assets invested in hedge funds","real","HFTotal_Actl",510,"HFTotal_Actl","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"652","Targeted percent of assets invested in fixed income","real","FITotal_Trgt",499,"FITotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"675","ActValDate_GASBAssumptions
+","real","ActValDate_GASBAssumptions
+",522,"ActValDate_GASBAssumptions
+","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"676","AS","real","AS",523,"AS","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"677","InvestmentReturn_LTStartYear","real","InvestmentReturn_LTStartYear",524,"InvestmentReturn_LTStartYear","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"649","Targeted percent of assets invested in equity investments (tot)","real","EQTotal_Trgt",496,"EQTotal_Trgt","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"467","Employer Annual Required Contribution","real","requiredcontribution",314,"requiredcontribution","1000","0","-1","2","78","static",NULL,NULL,NULL
+"474","Actuarially Determined Contribution","real","adec",321,"adec","1000","0","-1","2","78","static",NULL,NULL,NULL
+"466","Covered Payroll","real","payroll",313,"payroll","1000","0","-1","2","157","static",NULL,NULL,NULL
+"599","Total Benefits Paid To Service Retirees","real","benefits_serviceretirees",446,"benefits_serviceretirees","1000","0","-1","2","143","static",NULL,NULL,NULL
+"629","No CAFR","real","nocafr",476,"nocafr","1","0","-1","2","356","static",NULL,NULL,NULL
+"636","Securities lending-appreciation (income)","real","FVChange_SecLend",483,"FVChange_SecLend","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"525","Contributions - Other Member","real","contrib_ee_other",372,"contrib_ee_other","1000","0","-1","2","78","static",NULL,NULL,NULL
+"472","Net Position","real","netposition",319,"netposition","1000","0","-1","2","356","static",NULL,NULL,NULL
+"526","Contributions - Other Employer","real","contrib_er_other",373,"contrib_er_other","1000","0","-1","2","78","static",NULL,NULL,NULL
+"521","Employee Contributions","real","contrib_ee_regular",368,"contrib_ee_regular","1000","0","-1","2","78","static",NULL,NULL,NULL
+"529","Net Change in Fair Value of Investments","real","fairvaluechange_investments",376,"fairvaluechange_investments","1000","0","-1","2","137","static",NULL,NULL,NULL
+"539","Real Estate Expense","real","expense_realestate",386,"expense_realestate","1000","0","-1","2","148","static",NULL,NULL,NULL
+"545","Securities Lending - Total Net Expenses","real","expense_securitieslending",392,"expense_securitieslending","1000","0","-1","2","148","static",NULL,NULL,NULL
+"551","Deductions - Disability Benefits","real","expense_disabilitybenefits",398,"expense_disabilitybenefits","1000","0","-1","2","148","static",NULL,NULL,NULL
+"563","Internal Adjustment To Market Assets","real","adjustment_mktassets",410,"adjustment_mktassets","1000","0","-1","2","137","static",NULL,NULL,NULL
+"595","Total Annual Benefit Payments In Year","real","benefits_tot",442,"benefits_tot","1000","0","-1","2","143","static",NULL,NULL,NULL
+"639","	Contributions - other total","real","contrib_other_tot",486,"contrib_other_tot","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"644","Investments - Net","real","investments_net",491,"investments_net","1000","0","-1","2",NULL,"static",NULL,NULL,NULL
+"674","FVChange_SecLend_UG
+","real","FVChange_SecLend_UG",521,"FVChange_SecLend_UG","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"469","Actuarially Required Contribution","real","arc",316,"arc","1000","0","-1","2","78","static",NULL,NULL,NULL
+"464","Unfunded Actuarial Accrued Liability Under GASB Standards","real","uaal_gasb",311,"uaal_gasb","1000","0","-1","2","141","static",NULL,NULL,NULL
+"10845","Actuarial Firm","text","actuarial_firm",900,"actuarial_firm","1",NULL,"-1","3","357","static",NULL,NULL,NULL
+"11006","PE: Other","int_separated3","pe_other",896,"pe_other","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"11007","DB Multiplier, Text Description","varchar","multiplier_text",897,"multiplier_text",NULL,NULL,NULL,"3","414","static",NULL,NULL,NULL
+"11008","Actuarially Required Contribution - Inferred Based on GASB 68 Proportions","int_separated3","arc_inferred",832,"arc_inferred","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10860","Balances at Prior MD (Liabilities)","int_separated3","apxa_startbalance_liabs",747,"apxa_startbalance","1",NULL,NULL,"3","407","static",NULL,NULL,NULL
+"10802","Age_of_Retirement_Experience","int_separated3","Age_of_Retirement_Experience",10802,"Age_of_Retirement_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10803","Disability_Claim_Experience_Active","int_separated3","Disability_Claim_Experience_Active",10803,"Disability_Claim_Experience_Active","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10804","Disability_Claim_Experience_Inactive","int_separated3","Disability_Claim_Experience_Inactive",10804,"Disability_Claim_Experience_Inactive","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10805","Disability_Claim_Experience_Retired","int_separated3","Disability_Claim_Experience_Retired",10805,"Disability_Claim_Experience_Retired","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10806","Disability_Claim_Experience_Total","int_separated3","Disability_Claim_Experience_Total",10806,"Disability_Claim_Experience_Total","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10807","Mortality_Rate_Experience_Active","int_separated3","Mortality_Rate_Experience_Active",10807,"Mortality_Rate_Experience_Active","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10808","Mortality_Rate_Experience_Inactive","int_separated3","Mortality_Rate_Experience_Inactive",10808,"Mortality_Rate_Experience_Inactive","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10809","Mortality_Rate_Experience_Retired","int_separated3","Mortality_Rate_Experience_Retired",10809,"Mortality_Rate_Experience_Retired","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10810","Mortality_Rate_Experience_Total","int_separated3","Mortality_Rate_Experience_Total",10810,"Mortality_Rate_Experience_Total","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10811","Survivor_Claim_Experience_Active","int_separated3","Survivor_Claim_Experience_Active",10811,"Survivor_Claim_Experience_Active","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10812","Survivor_Claim_Experience_Inactive","int_separated3","Survivor_Claim_Experience_Inactive",10812,"Survivor_Claim_Experience_Inactive","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10813","Survivor_Claim_Experience_Retired","int_separated3","Survivor_Claim_Experience_Retired",10813,"Survivor_Claim_Experience_Retired","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10814","Survivor_Claim_Experience_Total","int_separated3","Survivor_Claim_Experience_Total",10814,"Survivor_Claim_Experience_Total","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10815","Withdrawal_Experience","int_separated3","Withdrawal_Experience",10815,"Withdrawal_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10816","Salary_Experience","int_separated3","Salary_Experience",10816,"Salary_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10817","Payroll_Experience","int_separated3","Payroll_Experience",10817,"Payroll_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10818","New_Entrant_Experience","int_separated3","New_Entrant_Experience",10818,"New_Entrant_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10819","Rehire_Experiennce","int_separated3","Rehire_Experiennce",10819,"Rehire_Experiennce","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10820","Other_Actuarial_Experience","int_separated3","Other_Actuarial_Experience",10820,"Other_Actuarial_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10821","Interest_Smoothing","int_separated3","Interest_Smoothing",10821,"Interest_Smoothing","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10822","Non_Investment_Actuarial_Experience","int_separated3","Non_Investment_Actuarial_Experience",10822,"Non_Investment_Actuarial_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10823","Actuarial_Experience","int_separated3","Actuarial_Experience",10823,"Actuarial_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10824","Legislative_Changes","int_separated3","Legislative_Changes",10824,"Legislative_Changes","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10826","Interest_on_Debt","int_separated3","Interest_on_Debt",10826,"Interest_on_Debt","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10827","Contribution_Deficiency","int_separated3","Contribution_Deficiency",10827,"Contribution_Deficiency","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10830","Actuarially Determined Employer Contribution (GASB 67/68) - From GASB 68 Report","int_separated3","adec_amt_from_gasb68",10830,"adec_amt_from_gasb68","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10833","Actuarial Value of Assets - From Actuarial Valuation","int_separated3","ava_from_av",10833,"ava_from_av","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10834","Actuarial Acrrued Liability - From Actuarial Valuation","int_separated3","aal_from_av",10834,"aal_from_av","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10835","Unfunded Accrued Liability - From Actuarial Valuation","int_separated3","ual_from_av",10835,"ual_from_av","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10836","GASB 25 Funded Ratio - From Actuarial Valuation","int_separated3","fundedratio_old_from_av",10836,"fundedratio_old_from_av","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10837","Covered Payroll - From Actuarial Valuation","int_separated3","payroll_from_av",10837,"payroll_from_av","1",NULL,NULL,"3","416","static",NULL,NULL,NULL
+"10831","Actuarially Determined Employer Contribution (GASB 67/68) Paid - From GASB 68 Report","int_separated3","adec_paidamt_from_gasb68",10831,"adec_paidamt_from_gasb68","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10832","Total ADEC Missed (GASB 67/68) - From GASB 68 Report","int_separated3","adec_missed_from_gasb68",10832,"adec_missed_from_gasb68","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10825","Changes_to_Methods_and_Assumptions","int_separated3","Changes_to_Methods_and_Assumptions",10825,"Changes_to_Methods_&_Assumptions","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10994","ADEC as a Percent of Payroll","percentage4","ADEC_Paid_Pct_Payroll",842,"ADEC_Paid_Pct_Payroll","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"10995","ADEC as a Percent of Payroll from GASB 68","percentage4","ADEC_PaidPct_Payroll_from_gasb68",842,"ADEC_PaidPct_Payroll_from_gasb68","1",NULL,NULL,"3","417","static",NULL,NULL,NULL
+"10839","Actuarially Determined Employer Contribution (GASB 67/68)  Pct - From GASB 68 Report","int_separated3","adec_pct_from_gasb68",10831,"adec_pct_from_gasb68","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10838","Actuarially Determined Employer Contribution (GASB 67/68) Paid Pct - From GASB 68 Report","int_separated3","adec_paidpct_from_gasb68",10838,"adec_paidpct_from_gasb68","1",NULL,NULL,"3","404","static",NULL,NULL,NULL
+"10801","Investment_Experience","int_separated3","Investment_Experience",10801,"Investment_Experience","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10842","Statutory Payment in Dollars, Employer","int_separated3","statutory_amt_er",10842,"statutory_amt_er","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10843","Statutory Payment Percentage, Employer","percentage4","statutory_pct_er",10843,"statutory_pct_er","1",NULL,NULL,"3","411","static",NULL,NULL,NULL
+"10828","Gain or Loss from Other Interest","int_separated3","Other_Interest",10828,"Other_Interest","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10829","Gain or loss due to normal contributions for the prior year","int_separated3","NC_Prior_Year",10829,"NC_Prior_Year","1",NULL,NULL,"3","180","static",NULL,NULL,NULL
+"10849","Total Employer Contributions","bigint","trc",NULL,"total_employer_contributions","1",NULL,NULL,"3","78","calculated","#3##+##4##+##5#",NULL,"done"
+"11011","GASB68 Actuarial Valuation",NULL,"10000003",NULL,NULL,"1000","0",NULL,"3","362","static","",NULL,NULL
+"11012","Experience Study",NULL,"10000004",NULL,NULL,"1000","0",NULL,"3","362","static","",NULL,NULL
+"679","Actuarial Firm Code","real","actuarialfirmcode",526,"actuarialfirmcode","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"678","Actuarial Firm","varchar","actuarialfirm",525,"actuarialfirm","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"681","Investment Consultant Code","real","investmentconsultantcode",528,"investmentconsultantcode","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"680","investment Consultant Name","varchar","investmentconsultantname",527,"investmentconsultantname","1","0","-1","2",NULL,"static",NULL,NULL,NULL
+"9704","Active International Equity Actual Allocation","real","EQIntlActv_Actl_Reason",9704,"Active_International_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9707","Cash/Short-term Actual Allocation","real","Cash_Actl_Reason",9707,"Cash_Short-term_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9710","Commodities Actual Allocation","real","Commod_Actl_Reason",9710,"Commodities_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9713","Convertible Fixed Income Actual Allocation","real","FIConv_Actl_Reason",9713,"Convertible_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9716","Core Equity Actual Allocation","real","EQCore_Actl_Reason",9716,"Core_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9719","Core Fixed Income Actual Allocation","real","FICore_Actl_Reason",9719,"Core_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9722","Core Real Estate Actual Allocation","real","RECore_Actl_Reason",9722,"Core_Real_Estate_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9725","Corporate Bonds Actual Allocation","real","FICorpBonds_Actl_Reason",9725,"Corporate_Bonds_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9728","Covered Call Actual Allocation","real","CoveredCall_Actl_Reason",9728,"Covered_Call_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9731","Credit Opportunities/Private Credit Actual Allocation","real","CreditOpp_Actl_Reason",9731,"Credit_Opportunities_Private_Credit_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9776","Fixed Income Mortgages/Securitized Debt Actual Allocation","real","FIMortgage_Actl_Reason",9776,"Fixed_Income_Mortgages_Securitized_Debt_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9779","GIPS Actual Allocation","real","FIGIPS_Actl_Reason",9779,"GIPS_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9782","Global Equity Actual Allocation","real","EQGlobal_Actl_Reason",9782,"Global_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9785","Global Fixed Income Actual Allocation","real","FIGlobal_Actl_Reason",9785,"Global_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9827","Misc. Alternatives Actual Allocation","real","AltMisc_Actl_Reason",9827,"Misc._Alternatives_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9830","Misc. Domestic Equity Actual Allocation","real","EQDomesticMisc_Actl_Reason",9830,"Misc._Domestic_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9833","Misc. Equity Actual Allocation","real","EQMisc_Actl_Reason",9833,"Misc._Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9834","Misc. Equity and Fixed Income Blends Actual Allocation","real","MiscEQFI_Actl_Reason",9834,"Misc._Equity_and_Fixed_Income_Blends_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9839","Misc. Fixed Income Actual Allocation","real","FIMisc_Actl_Reason",9839,"Misc._Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9842","Misc. Hedge Funds Actual Allocation","real","Hedge_Actl_Reason",9842,"Misc._Hedge_Funds_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9845","Misc. International Equity Actual Allocation","real","EQIntlMisc_Actl_Reason",9845,"Misc._International_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9848","Misc. Real Estate Actual Allocation","real","REMisc_Actl_Reason",9848,"Misc._Real_Estate_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9851","MLP/Limited Partnership Actual Allocation","real","MLP_Actl_Reason",9851,"MLP_Limited_Partnership_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9854","Multi-Asset Class/Diversified Actual Allocation","real","MultiClass_Actl_Reason",9854,"Multi-Asset_Class_Diversified_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9857","Natural Resources Actual Allocation","real","NatResources_Actl_Reason",9857,"Natural_Resources_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9860","Nominal Fixed Income Actual Allocation","real","FINominal_Actl_Reason",9860,"Nominal_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9863","Non-Core Fixed Income Actual Allocation","real","FINonCore_Actl_Reason",9863,"Non-Core_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9866","Non-Core Real Estate Actual Allocation","real","RENonCore_Actl_Reason",9866,"Non-Core_Real_Estate_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9869","Opportunistic Debt Alernatives Actual Allocation","real","OppDebt_Actl_Reason",9869,"Opportunistic_Debt_Alernatives_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9872","Opportunistic Equity Actual Allocation","real","EQOpportunistic_Actl_Reason",9872,"Opportunistic_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9873","Opportunistic Equity Alternative Actual Allocation","real","OppEQ_Actl_Reason",9873,"Opportunistic_Equity_Alternative_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9878","Opportunistic Fixed Income Actual Allocation","real","FIOpp_Actl_Reason",9878,"Opportunistic_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9881","Opportunity/Opportunistic Actual Allocation","real","Opp_Actl_Reason",9881,"Opportunity_Opportunistic_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9701","Absolute Return/Value Fund Actual Allocation","real","AbsRtrn_Actl_Reason",9701,"Absolute_Return_Value_Fund_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9734","Developed International Equity Actual Allocation","real","EQIntlDev_Actl_Reason",9734,"Developed_International_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9737","Distressed Debt Actual Allocation","real","DistrssedDebt_Actl_Reason",9737,"Distressed_Debt_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9740","Distressed Lending Actual Allocation","real","DistrssedLend_Actl_Reason",9740,"Distressed_Lending_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9743","Domestic Fixed Income Actual Allocation","real","FIDomestic_Actl_Reason",9743,"Domestic_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9746","Emerging Fixed Income Actual Allocation","real","FIEmerg_Actl_Reason",9746,"Emerging_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9749","Emerging International Equity Actual Allocation","real","EQIntlEmerg_Actl_Reason",9749,"Emerging_International_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9752","Equity Hedge Actual Allocation","real","HedgeEQ_Actl_Reason",9752,"Equity_Hedge_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9755","Equity Securities Lending Actual Allocation","real","EQSecLend_Actl_Reason",9755,"Equity_Securities_Lending_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9758","Farmland/Agriculture Actual Allocation","real","Farm_Actl_Reason",9758,"Farmland_Agriculture_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9761","Fixed Income + Alternatives Actual Allocation","real","FIAlt_Actl_Reason",9761,"Fixed_Income_+_Alternatives_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9764","Fixed Income + Cash Actual Allocation","real","FICash_Actl_Reason",9764,"Fixed_Income_+_Cash_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9767","Fixed Income Below Investment Grade Actual Allocation","real","FIBelowInvestGrd_Actl_Reason",9767,"Fixed_Income_Below_Investment_Grade_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9770","Fixed Income ETI Actual Allocation","real","FIETI_Actl_Reason",9770,"Fixed_Income_ETI_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9773","Fixed Income Funds of Funds Actual Allocation","real","FIFundsFunds_Actl_Reason",9773,"Fixed_Income_Funds_of_Funds_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9788","Global Growth Equity Actual Allocation","real","EQGlobalGrowth_Actl_Reason",9788,"Global_Growth_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9791","GTAA/GAA/Global Macro Hedge Actual Allocation","real","GTAA_Actl_Reason",9791,"GTAA_GAA_Global_Macro_Hedge_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9794","High Yield Fixed Income Actual Allocation","real","FIHighYield_Actl_Reason",9794,"High_Yield_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9797","Inflation Linked Bonds/TIPS Actual Allocation","real","FITIPS_Actl_Reason",9797,"Inflation_Linked_Bonds_TIPS_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9800","Inflation-Sensititive Actual Allocation","real","AltInflation_Actl_Reason",9800,"Inflation-Sensititive_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9803","Infrastructure Actual Allocation","real","Infrast_Actl_Reason",9803,"Infrastructure_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9806","International Fixed Income Actual Allocation","real","FIIntl_Actl_Reason",9806,"International_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9911","Risk Parity Actual Allocation","real","RiskParity_Actl_Reason",9911,"Risk_Parity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9914","Small Cap Domestic Equity Actual Allocation","real","EQDomesticSmall_Actl_Reason",9914,"Small_Cap_Domestic_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9917","Small Cap Equity Actual Allocation","real","EQSmall_Actl_Reason",9917,"Small_Cap_Equity”_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9920","Social Responsibility Equity Actual Allocation","real","EQSocialResp_Actl_Reason",9920,"Social_Responsibility_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9923","Structured Fixed Income Actual Allocation","real","FIStructured_Actl_Reason",9923,"Structured_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9926","Timberland Actual Allocation","real","Timber_Actl_Reason",9926,"Timberland_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9929","Triple Net Lease Actual Allocation","real","RETriple_Actl_Reason",9929,"Triple_Net_Lease_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9932","US Treasury Actual Allocation","real","FITreasury_Actl_Reason",9932,"US_Treasury_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9809","Investment Grade Fixed Income Actual Allocation","real","FIInvestGrd_Actl_Reason",9809,"Investment_Grade_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9812","Large Cap Domestic Equity Actual Allocation","real","EQDomesticLarge_Actl_Reason",9812,"Large_Cap_Domestic_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9815","Large Cap Equity Actual Allocation","real","EQLarge_Actl_Reason",9815,"Large_Cap_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9818","Loans Actual Allocation","real","FILoans_Actl_Reason",9818,"Loans_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9821","Micro Cap Equity Actual Allocation","real","EQMicro_Actl_Reason",9821,"Micro_Cap_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9824","Mid Cap Domestic Equity Actual Allocation","real","EQDomesticMid_Actl_Reason",9824,"Mid_Cap_Domestic_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9884","Other Actual Allocation","real","Other_Actl_Reason",9884,"Other”_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9887","Passive International Equity Actual Allocation","real","EQIntlPass_Actl_Reason",9887,"Passive_International_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9890","Private Debt Actual Allocation","real","PrivateDebt_Actl_Reason",9890,"Private_Debt_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9893","Private Equity Actual Allocation","real","EQPrivate_Actl_Reason",9893,"Private_Equity_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9896","Private Placement Actual Allocation","real","PrivatePlacement_Actl_Reason",9896,"Private_Placement_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9899","Private Real Estate Actual Allocation","real","PrivRealEstate_Actl_Reason",9899,"Private_Real_Estate_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9902","Real Assets/Real Return Actual Allocation","real","RealAssets_Actl_Reason",9902,"Real_Assets_Real_Return_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9905","REIT Actual Allocation","real","REIT_Actl_Reason",9905,"REIT_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9908","Relative Return/Value Fund Actual Allocation","real","RelativeRtrn_Actl_Reason",9908,"Relative_Return_Value_Fund_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"9935","Value Added Fixed Income Actual Allocation","real","FIValue_Actl_Reason",9935,"Value_Added_Fixed_Income_Actual_Allocation_Reason","1","0","0","3","137","static",NULL,NULL,NULL
+"10701","Actual COLA","varchar","actual_COLA",10701,"actual_COLA","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10702","Minimum COLA","varchar","min_COLA",10702,"min_COLA","1",NULL,NULL,"3","412","static",NULL,NULL,NULL
+"10703","Contribution Rate Effective FY","varchar","cont_rate_FY",10703,"cont_rate_FY","1",NULL,"-1","3","180","static",NULL,NULL,NULL
+"10704","Amortization Payment, Total $ Amount","int_separated3","Amo_Total_Amt",10704,"Amo_Total_Amt","1",NULL,"-1","3","180","static",NULL,NULL,NULL
+"10705","Employee Payment, Total $ Amount","int_separated3","EE_Total_Amt",10705,"EE_Total_Amt","1",NULL,"-1","3","180","static",NULL,NULL,NULL
+"10706","Administrative Expenses - Percentage","real","Admin_Expense_Pct",10706,"Admin_Expense_Pct","1",NULL,"-1","3","414","static",NULL,NULL,NULL
+"10798","Gain or loss due to changes in benefits","int_separated3","Benefit_Changes",10798,"Benefit_Changes","1",NULL,"-1","3","180","static",NULL,NULL,NULL
+"10799","Gain or loss due to changes in COLA Provisions","int_seperated3","COLA_Gain_Loss",10799,"COLA_Gain_Loss","1",NULL,"-1","3","180","static",NULL,NULL,NULL
+"10800","Gain or loss due to changes in PBI Provisions","int_seperated3","PBI_Gain_Loss",10800,"PBI_Gain_Loss","1",NULL,"-1","3","180","static",NULL,NULL,NULL
+"9672","Percent of assets invested in other investments","real","OtherTotal_Actl_Reason",9519,"OtherTotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9657","	Percent of assets invested in misc. alternatives","real","AltMiscTotal_Actl_Reason",9504,"AltMiscTotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9660","Percent of assets invested in private equity","real","PETotal_Actl_Reason",9507,"PETotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9648","Percent of assets invested in equity investments (total)","real","EQTotal_Actl_Reason",9495,"EQTotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9651","Percent of assets invested in fixed income","real","FITotal_Actl_Reason",9498,"FITotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9654","Percent of assets invested in real estate","real","RETotal_Actl_Reason",9501,"RETotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9669","Percent of assets invested in cash","real","CashTotal_Actl_Reason",9516,"CashTotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9666","Percent of assets invested in commodities","real","COMDTotal_Actl_Reason",9513,"COMDTotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"9663","Percent of assets invested in hedge funds","real","HFTotal_Actl_Reason",9510,"HFTotal_Actl_Reason","1","0","-1","3","137","static",NULL,NULL,NULL
+"10707","Amortization Payment, Total $ Amount","int_separated3","Tot_Total_Amt",10707,"Tot_Total_Amt","1",NULL,"-1","3","180","static",NULL,NULL,NULL
