@@ -1,0 +1,328 @@
+---
+title: "Merging Hgarb Files"
+format: html
+editor: visual
+---
+
+```{r}
+library(dplyr)
+library(readxl) 
+library(stringr)
+library(rio)
+library(here)
+library(janitor)
+library(data.table)
+library(tidyr)
+library(stringr)
+```
+
+# 2022
+
+## File list
+
+```{r}
+filelist_2022 <- list.files("data/HGarb_Updates_2022", pattern = "_2022.xlsx")
+length(filelist_2022)
+
+#TODO: double check with Truong: these files do not have "updated" in their file names. Are they just typos or something need to pay attention here?
+
+setdiff(filelist_2022, list.files("data/HGarb_Updates_2022", pattern = "updated_2022.xlsx"))
+#[1] "Missouri MoDOT_and_HPERS_2022.xlsx"
+#[2] "Oregon_TriMet_BUEDBPP_2022.xlsx" 
+```
+
+## Function: read_1_file
+
+```{r}
+read_1_file <- function (filename) {
+    filename = paste0("data/HGarb_Updates_2022/", filename)
+
+### sheet 1
+s1 = import(filename, sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:9) %>% 
+  # Differentiate some cols from sheet 1 & sheet 3 
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_gasb")))
+
+### sheet 2
+s2 = import(filename, sheet = "Actuarial Valuation", skip = 1) %>% #"Actuarial Valuation"
+      clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:22) %>% 
+      mutate(fye = as.double(fye)) %>%  # solve a few cases in sheet 2 
+  
+      # Differentiate some cols from sheet 2 & sheet 3 
+      setnames(
+        old =  c("actuarial_return", "market_return","ava" , "aal","ual", "funded_ratio_old", "payroll"), 
+        new = c(paste0(c("actuarial_return", "market_return","ava" , "aal", "ual", "funded_ratio_old", "payroll"), "_from_valuation")))
+
+
+###sheet 3
+s3 = import(filename, sheet = "CAFR", skip = 1) %>% #"CAFR"
+       clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:22) %>% 
+    # Differentiate some cols from sheet 2 & sheet 3 
+   setnames(old = c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"),
+    new = c(paste0(c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"), "_from_acfr"))) %>% 
+  
+  # Differentiate sheet 1 & sheet 3
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr")))
+  
+
+ result <- s1 %>% 
+      full_join(s2, by = c("full_name", "fye")) %>% 
+      full_join(s3, by = c("full_name", "fye")) %>% 
+      arrange(fye)
+ return(result)
+}
+```
+
+## Regular cases
+
+```{r}
+# loop through all file names. Exceptions: 6, 8, 35, 76, 78 are dealt with below
+df = data.frame()
+for (filename in filelist_2022[c(1:5, 7, 9:34, 36:75, 77, 79:145)]) {
+  plan <- read_1_file(filename)
+  df = rbind(df, plan) %>% distinct()
+}
+
+df_regular <- df
+# double check: make sure each plan has exact 22 rows
+df_regular %>% 
+  select(full_name) %>% add_count(full_name) %>% filter(n != 22)
+```
+
+## Exceptions
+
+6, 8, 35, 76, 78, 131, 132 are dealt with below \### Arizona
+
+```{r}
+# Problem with these Arizona - have more than 22 lines, duplicates rows
+filelist_2022[6:8]
+#6 "Arizona_PSPRS_Tier 3_updated_2022.xlsx" # 35 lines
+# duplicates, multiple file for a year --> take rows below source line
+df6 <- read_1_file(filelist_2022[6]) %>% 
+  mutate(full_name = ifelse(is.na(full_name), "Arizona - Public Safety Personnel Retirement System Tier 3", full_name)) %>% distinct() %>% 
+  slice(-14) #take out the duplicate 14, has some literal string "NA" instead of value NA
+
+#Arizona State Retirement System
+df8 <- read_1_file(filelist_2022[8]) # has year 2000 with some values from col 161 ~
+
+```
+
+### Georgia
+
+```{r}
+#Georgia has year 2000
+df35 <- read_1_file(filelist_2022[35])
+```
+
+### Massachusetts
+
+```{r}
+# This has 31 rows. # first tab GASB has different full name from other tabs --> need to change full_name? 
+df76 <- read_1_file(filelist_2022[76]) 
+  
+# TODO: double check with Truong whether we need to change name to be identical between 3 sheets or keep it as is. 
+# GASB 68 has name "Massachusetts State Employees' Retirement System". Other 2 sheets : "Massachusetts- State Retirement System" to be the same with other 2 sheets
+  
+```
+
+### Michigan
+
+```{r}
+#Michigan_JRS_updated_2022.xlsx has this: "...12" and doesn't have this: "Tot_Total_Amt" 
+filelist_2022[78] 
+read_1_file("Alabama_ERS_updated_2022.xlsx") %>% colnames() -> colnames_normal
+read_1_file("Michigan_JRS_updated_2022.xlsx") %>% colnames() -> colnames_exception
+ 
+ setdiff(colnames_normal, colnames_exception)
+ setdiff(colnames_exception,colnames_normal)
+ 
+df78 <- read_1_file("Michigan_JRS_updated_2022.xlsx") %>% 
+  rename( tot_total_amt = x12)
+
+```
+
+## Result
+
+```{r}
+#number of rows" 3146 + 22 + 23 + 23 + 31 + 22 = 3267 rows
+all_plans_2022 <- rbind(df_regular, df6, df8, df35, df76, df78)
+```
+
+# 2021
+
+## Function: read_1_file_2021
+
+```{r}
+filelist_2021 <- list.files("data/HGarb_Updates_2021", pattern = "2021.xlsx")
+length(filelist_2021) #186
+
+read_1_file_2021 <- function (filename) {
+    filename = paste0("data/HGarb_Updates_2021/", filename)
+
+### sheet 1
+s1 = import(filename, sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:8) %>% 
+  # Differentiate some cols from sheet 1 & sheet 3 
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_gasb")))
+
+### sheet 2
+s2 = import(filename, sheet = "Actuarial Valuation", skip = 1) %>% #"Actuarial Valuation"
+      clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:21) %>% 
+      mutate(fye = as.double(fye)) %>%  # solve a few cases in sheet 2 
+  
+      # Differentiate some cols from sheet 2 & sheet 3 
+      setnames(
+        old =  c("actuarial_return", "market_return","ava" , "aal","ual", "funded_ratio_old", "payroll"), 
+        new = c(paste0(c("actuarial_return", "market_return","ava" , "aal", "ual", "funded_ratio_old", "payroll"), "_from_valuation")))
+
+
+###sheet 3
+s3 = import(filename, sheet = "CAFR", skip = 1) %>% #"CAFR"
+       clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:21) %>% 
+    # Differentiate some cols from sheet 2 & sheet 3 
+   setnames(old = c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"),
+    new = c(paste0(c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"), "_from_acfr"))) %>% 
+  
+  # Differentiate sheet 1 & sheet 3
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr")))
+  
+
+ result <- s1 %>% 
+      full_join(s2, by = c("full_name", "fye")) %>% 
+      full_join(s3, by = c("full_name", "fye")) %>% 
+      arrange(fye)
+ return(result)
+}
+#test function: 
+read_1_file_2021("West Virginia_TRS_updated_2021.xlsx")
+```
+
+## Regular cases
+
+```{r}
+# loop through regular cases. Exceptions: 9
+df = data.frame()
+for (filename in filelist_2021[c(1:8, 10:186)]) {
+  plan <- read_1_file_2021(filename)
+  df = rbind(df, plan)
+}
+df_regular_21 = df 
+
+##### Each plan should have 21 rows (186*21 + 22 AZ + 22GA + 5 MO + 7 MO= 3972 rows). 
+#Excepts these has 22 rows, including year 2000: Arizona State Retirement System; Teachers Retirement System of Georgia 
+df_regular_21 %>% add_count(full_name) %>% select(full_name, n) %>% distinct %>% filter(n !=21)
+
+#[104] "Missouri_PEERS_updated_2021.xlsx" mixed between: 
+
+# Non-Teacher School Employee Retirement System of Missouri has 5 rows
+# Public Education Employee Retirement System of Missouri has 17 rows
+
+# View: 
+
+    # import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 1, skip = 1) %>% #"GASB 68"
+    # filter(!is.na(fye)) %>% slice(1:8)
+    # 
+    # import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 2, skip = 1) %>% #"Actuarial Valuation"
+    # filter(!is.na(fye)) %>% slice(1:21) %>% 
+    #   mutate(fye = as.double(fye)) # solve a few cases in sheet 2
+    # 
+    # import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 3, skip = 1) %>% #"CAFR"
+    # filter(!is.na(fye)) %>% slice(1:21)
+```
+
+## Exceptions
+
+### Arizona
+
+```{r}
+df9_2021 <- read_1_file_2021(filelist_2021[9]) %>% 
+  mutate(full_name = ifelse(is.na(full_name), "Arizona - Public Safety Personnel Retirement System Tier 3", full_name)) %>% distinct() %>% 
+  slice(-14) #take out the duplicate 14, has some literal string "NA" instead of value NA
+```
+
+## Result
+
+```{r}
+all_plans_2021 <- rbind(df_regular_21, df9_2021) %>% 
+  mutate(tot_total_amt = "NA") # adding a col that 2022 has but 2021 doesn't
+
+all_plans_2021 %>% distinct(full_name) # 192 full_name
+all_plans_2022 %>% distinct(full_name) # 149 full_name
+
+# plans in 2021 but not in 2022
+setdiff(all_plans_2021 %>% distinct(full_name), all_plans_2022 %>% distinct(full_name))
+
+#rows that in 2021 but not in 2022
+all_plans_2021 %>% 
+  filter(!full_name %in% all_plans_2022$full_name) -> in_2021_not_in_2022
+
+#bind back to 2022
+all_plans_2021_2022 <- all_plans_2022 %>% 
+  rbind(in_2021_not_in_2022)
+
+# check for irregularity: All of these are checked & accounted for above
+all_plans_2021_2022 %>% add_count(full_name) %>% select(full_name, n) %>% 
+  filter(n < 21 | n > 22)
+
+write.csv(all_plans_2021_2022, "output/all_plans_2021_2022.csv")
+```
+
+
+# Compare 2022 vs 2021
+
+```{r}
+# 2022 has a col that 2021 doesn't have
+setdiff((all_plans_2022 %>% colnames()), (all_plans_2021 %>% colnames()))
+```
+
+```{r}
+# 2022 has plans that 2021 doesnt have
+setdiff(str_remove(filelist_2022, "_updated_2022.xlsx"), str_remove(filelist_2021, "_updated_2021.xlsx"))
+
+# 2021 has plans that 2022 doesnt have (1 plan without "updated" in their name)
+setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_2022, "_updated_2022.xlsx")) 
+
+```
+
+
+# Data for database
+
+## Transform the shape
+
+```{r}
+reason_colnames <- read.csv("output/reason_field_name_by_document.csv") %>% slice(-c(1:2))
+
+all_plans_2021_2022 %>% 
+ pivot_longer(col = 3: 186,
+              names_to = "field",
+              values_to = "value",
+              values_transform = list(value = as.character)) %>% 
+ 
+  
+  mutate(source = case_when(field %in% (reason_colnames$gasb_shortname) ~ "gasb",
+                            field %in% (reason_colnames$valuation_shortname) ~ "valuation",
+                            field %in% (reason_colnames$acfr_shortname) ~ "acfrs",
+                            TRUE ~ as.character(NA)
+                            
+)) -> all_plans_21_22_longform_database
+
+
+all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
+
+```

@@ -156,7 +156,6 @@ df78 <- read_1_file("Michigan_JRS_updated_2022.xlsx") %>%
 all_plans_2022 <- rbind(df_regular, df6, df8, df35, df76, df78)
 ```
 
-
 # 2021
 
 ## Function: read_1_file_2021
@@ -236,15 +235,15 @@ df_regular_21 %>% add_count(full_name) %>% select(full_name, n) %>% distinct %>%
 
 # View: 
 
-    import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 1, skip = 1) %>% #"GASB 68"
-    filter(!is.na(fye)) %>% slice(1:8)
-  
-    import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 2, skip = 1) %>% #"Actuarial Valuation"
-    filter(!is.na(fye)) %>% slice(1:21) %>% 
-      mutate(fye = as.double(fye)) # solve a few cases in sheet 2
-  
-    import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 3, skip = 1) %>% #"CAFR"
-    filter(!is.na(fye)) %>% slice(1:21)
+    # import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 1, skip = 1) %>% #"GASB 68"
+    # filter(!is.na(fye)) %>% slice(1:8)
+    # 
+    # import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 2, skip = 1) %>% #"Actuarial Valuation"
+    # filter(!is.na(fye)) %>% slice(1:21) %>% 
+    #   mutate(fye = as.double(fye)) # solve a few cases in sheet 2
+    # 
+    # import("data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx", sheet = 3, skip = 1) %>% #"CAFR"
+    # filter(!is.na(fye)) %>% slice(1:21)
 ```
 
 ## Exceptions
@@ -284,9 +283,28 @@ all_plans_2021_2022 %>% add_count(full_name) %>% select(full_name, n) %>%
 write.csv(all_plans_2021_2022, "output/all_plans_2021_2022.csv")
 ```
 
+
+# Compare 2022 vs 2021
+
+```{r}
+# 2022 has a col that 2021 doesn't have
+setdiff((all_plans_2022 %>% colnames()), (all_plans_2021 %>% colnames()))
+```
+
+```{r}
+# 2022 has plans that 2021 doesnt have
+setdiff(str_remove(filelist_2022, "_updated_2022.xlsx"), str_remove(filelist_2021, "_updated_2021.xlsx"))
+
+# 2021 has plans that 2022 doesnt have (1 plan without "updated" in their name)
+setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_2022, "_updated_2022.xlsx")) 
+
+```
+
+
 # Data for database
 
 ## Transform the shape
+
 ```{r}
 reason_colnames <- read.csv("output/reason_field_name_by_document.csv") %>% slice(-c(1:2))
 
@@ -306,37 +324,5 @@ all_plans_2021_2022 %>%
 
 
 all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
-
-
-all_plans_21_22_longform_database %>% left_join(reason_colnames, by= c("field" = ""))
-
-reason_colnames
-```
-
-## Data type
-```{r}
-all_plans_2021_2022  %>% filter(!is.na(vd))
-  select(full_name, fye, payroll_from_acfr) %>% 
-filter(!payroll_from_acfr %in% c("NA", "N/A")) %>% 
-  mutate(payroll_from_acfr = as.double(payroll_from_acfr)) %>% 
-  arrange(desc(payroll_from_acfr))
-  
-all_plans_2021_2022 %>% colnames()
-```
-
-
-# Compare 2022 vs 2021
-
-```{r}
-# 2022 has a col that 2021 doesn't have
-setdiff((all_plans_2022 %>% colnames()), (all_plans_2021 %>% colnames()))
-```
-
-```{r}
-# 2022 has plans that 2021 doesnt have
-setdiff(str_remove(filelist_2022, "_updated_2022.xlsx"), str_remove(filelist_2021, "_updated_2021.xlsx"))
-
-# 2021 has 48 plans that 2022 doesnt have (1 plan without "updated" in their name)
-setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_2022, "_updated_2022.xlsx")) -> not_in_2022
 
 ```

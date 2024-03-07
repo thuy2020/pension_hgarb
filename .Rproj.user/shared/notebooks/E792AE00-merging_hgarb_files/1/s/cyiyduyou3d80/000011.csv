@@ -1,0 +1,22 @@
+"0",""
+"0","#[104] ""Missouri_PEERS_updated_2021.xlsx"" mixed between: "
+"0",""
+"0","# Non-Teacher School Employee Retirement System of Missouri has 5 rows"
+"0","# Public Education Employee Retirement System of Missouri has 17 rows"
+"0",""
+"0","# View: "
+"0",""
+"0","    import(""data/HGarb_Updates_2021/Missouri_PEERS_updated_2021.xlsx"", sheet = 1, skip = 1) %>% #""GASB 68"""
+"0","    filter(!is.na(fye)) %>% slice(1:8)"
+"2","New names:"
+"1","[1m[33mError[39m in `filter()`:[22m
+[38;5;255m[33m![38;5;255m Problem while computing `..1 = !is.na(fye)`.[39m
+[1mCaused by error in `mask$eval_all_filter()`:[22m
+[33m![39m object 'fye' not found
+Backtrace:
+[90m 1. [39m... %>% slice(1:8)
+[90m 4. [39m[1m[94mdplyr:::filter.data.frame([39m[22m., !is.na(fye)[1m[94m)[39m[22m
+[90m 5. [39mdplyr:::filter_rows(.data, ..., caller_env = caller_env())
+[90m 6. [39mdplyr:::filter_eval(dots, mask = mask, error_call = error_call)
+[90m 8. [39mmask$eval_all_filter(dots, env_filter)
+"

@@ -1,0 +1,2 @@
+"0","#number of rows"" 3146 + 22 + 23 + 23 + 31 + 22 = 3267 rows"
+"0","all_plans_2022 <- rbind(df_regular, df6, df8, df35, df76, df78)"
