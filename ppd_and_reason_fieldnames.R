@@ -3,11 +3,11 @@ rm(list=ls())
 
 library(dplyr)
 
-plan_attribute_master_df <- read.csv("./legacy_db_linkage_and_priority/plan_attribute_master.csv") %>% 
+plan_attribute_master_df <- read.csv("data/plan_attribute_master.csv") %>% 
   select(-id)
 
 # plan_attribute_df covers data from ppd and reason (data_source_id = 2 or 3)
-plan_attribute_df <- read.csv("./legacy_db_linkage_and_priority/plan_attribute.csv") %>% 
+plan_attribute_df <- read.csv("data/plan_attribute.csv") %>% 
   select(id, name, attribute_column_name, data_source_id)
 
 ppd_df <- plan_attribute_df %>% 

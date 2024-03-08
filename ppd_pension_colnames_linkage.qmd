@@ -14,7 +14,6 @@ library(janitor)
 library(tidyr)
 ```
 
-
 # Reason data field fullname & shortname by document source
 
 ```{r}
@@ -80,20 +79,12 @@ write.csv(reason_field_name_full_short_source, "output/reason_field_name_by_docu
 
 # PPD code book & field names
 
-```{r}
-# downloaded from ppd site
-ppd_colnames <- import(here("data/ppd-data-latest.csv")) %>% 
-  colnames() %>% tolower()%>% sort()
+\`\`\`{r} \# downloaded from ppd site ppd_colnames \<- import(here("data/ppd-data-latest.csv")) %\>% colnames() %\>% tolower()%\>% sort()
 
-#https://publicplansdata.org/public-plans-database/download-full-data-set/
-ppd_colnames_from_codebook <- import(here("data/ppd-codebook.csv")) %>% 
-  clean_names() %>% 
-  # change 
-  rename(ppd_fullname = variable_label) %>% 
-  mutate(ppd_shortname = str_to_lower(variable_name)) %>% select(ppd_fullname, ppd_shortname) 
-  
+#https://publicplansdata.org/public-plans-database/download-full-data-set/ ppd_colnames_from_codebook \<- import(here("data/ppd-codebook.csv")) %\>% clean_names() %\>% \# change rename(ppd_fullname = variable_label) %\>% mutate(ppd_shortname = str_to_lower(variable_name)) %\>% select(ppd_fullname, ppd_shortname)
 
 # it seems like Reason has slightly different ppd colnames:
-ppd_colnames_created_by_reason <-import(here::here("data/marc_swaroop_handover_files/ppd-out.xlsx"))%>% colnames() %>% sort()
+
+ppd_colnames_created_by_reason \<-import(here::here("data/marc_swaroop_handover_files/ppd-out.xlsx"))%\>% colnames() %\>% sort()
 
 write.csv(ppd_colnames_from_codebook, "output/ppd_colnames_from_codebook.csv")
