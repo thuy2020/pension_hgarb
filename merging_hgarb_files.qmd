@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-```{r}
+```{r warning=FALSE}
 library(dplyr)
 library(readxl) 
 library(stringr)
@@ -14,6 +14,7 @@ library(janitor)
 library(data.table)
 library(tidyr)
 library(stringr)
+source("reason_fieldnames_bydocuments.R")
 ```
 
 # 2022
@@ -71,14 +72,23 @@ s3 = import(filename, sheet = "CAFR", skip = 1) %>% #"CAFR"
   setnames(
     old = c("adec_amt", "adec_paid_amt", "adec_missed"),
     new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr")))
-  
+
+# extract plan_id
+plan_id <- import(filename, sheet = "Database Input") %>% 
+    select(2) %>% colnames()
 
  result <- s1 %>% 
       full_join(s2, by = c("full_name", "fye")) %>% 
       full_join(s3, by = c("full_name", "fye")) %>% 
-      arrange(fye)
+      arrange(fye) %>% 
+ #adding plan_id  
+   mutate(plan_id = plan_id)
+   
+   
  return(result)
 }
+
+read_1_file("California_CalPERS_JRS II_updated_2022.xlsx") %>% select(full_name, plan_id)
 ```
 
 ## Regular cases
@@ -99,7 +109,9 @@ df_regular %>%
 
 ## Exceptions
 
-6, 8, 35, 76, 78, 131, 132 are dealt with below \### Arizona
+6, 8, 35, 76, 78, 131, 132 are dealt with below
+
+## Arizona
 
 ```{r}
 # Problem with these Arizona - have more than 22 lines, duplicates rows
@@ -201,12 +213,18 @@ s3 = import(filename, sheet = "CAFR", skip = 1) %>% #"CAFR"
   setnames(
     old = c("adec_amt", "adec_paid_amt", "adec_missed"),
     new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr")))
-  
+
+# extract plan_id
+plan_id <- import(filename, sheet = "Database Input") %>% 
+    select(2) %>% colnames()
 
  result <- s1 %>% 
       full_join(s2, by = c("full_name", "fye")) %>% 
       full_join(s3, by = c("full_name", "fye")) %>% 
-      arrange(fye)
+      arrange(fye) %>% 
+ #adding plan_id  
+   mutate(plan_id = plan_id)
+
  return(result)
 }
 #test function: 
@@ -280,9 +298,8 @@ all_plans_2021_2022 <- all_plans_2022 %>%
 all_plans_2021_2022 %>% add_count(full_name) %>% select(full_name, n) %>% 
   filter(n < 21 | n > 22)
 
-write.csv(all_plans_2021_2022, "output/all_plans_2021_2022.csv")
-```
 
+```
 
 # Compare 2022 vs 2021
 
@@ -300,29 +317,47 @@ setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_202
 
 ```
 
+# Final result
+
+Linking between Hgarb & Legacy Database: full_name, short_name, plan_id, ppd_id
+
+```{r}
+# Queried from database: SELECT DISTINCT ON (plan_id, plan_name, ppd_id) plan_id, plan_name, ppd_id FROM public.master_attribute_view
+
+import("data/data-1710179186316.csv") %>% 
+  mutate(plan_id = as.character(plan_id)) -> planid_planname_ppdid_legacydatabase
+
+all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>% 
+  left_join(planid_planname_ppdid_legacydatabase, by=c("plan_id")) %>% 
+  mutate(plan_name_hgarb = full_name,
+         plan_name_legacydatabase = plan_name) %>% 
+    select(-c(full_name, plan_name)) %>% 
+  relocate(plan_id, ppd_id, plan_name_hgarb, plan_name_legacydatabase, .before = 1) 
+
+```
+
+
+```{r}
+write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2021_2022.csv")
+```
 
 # Data for database
 
 ## Transform the shape
 
 ```{r}
-reason_colnames <- read.csv("output/reason_field_name_by_document.csv") %>% slice(-c(1:2))
-
-all_plans_2021_2022 %>% 
- pivot_longer(col = 3: 186,
+all_plans_2021_2022_all_ids %>% 
+ pivot_longer(col = 6: 189,
               names_to = "field",
               values_to = "value",
               values_transform = list(value = as.character)) %>% 
  
-  
-  mutate(source = case_when(field %in% (reason_colnames$gasb_shortname) ~ "gasb",
-                            field %in% (reason_colnames$valuation_shortname) ~ "valuation",
-                            field %in% (reason_colnames$acfr_shortname) ~ "acfrs",
+  mutate(source = case_when(field %in% (gasb_shortname) ~ "gasb",
+                            field %in% (valuation_shortname) ~ "valuation",
+                            field %in% (acfr_shortname) ~ "acfrs",
                             TRUE ~ as.character(NA)
                             
 )) -> all_plans_21_22_longform_database
 
-
 all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
-
 ```
