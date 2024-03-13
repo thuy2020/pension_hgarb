@@ -380,5 +380,6 @@ all_plans_2021_2022_all_ids %>%
                             
 )) -> all_plans_21_22_longform_database
 
+#Note: large file, need to track by lfs
 all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
 ```
