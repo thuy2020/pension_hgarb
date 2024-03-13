@@ -359,5 +359,5 @@ all_plans_2021_2022_all_ids %>%
                             
 )) -> all_plans_21_22_longform_database
 
-#all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
+all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
 ```
