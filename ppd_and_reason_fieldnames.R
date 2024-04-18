@@ -41,4 +41,5 @@ anti_joined_ppd_reason_df <- ppd_df %>%
 
 
 # Notes
-# Total contribution, Employer Projected Actuarial Required Contribution Rate: Each gets assigned to two master attribute (156 and 442)
+# Total contribution, Employer Projected Actuarial Required 
+#Contribution Rate: Each gets assigned to two master attribute (156 and 442)

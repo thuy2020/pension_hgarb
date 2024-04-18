@@ -74,7 +74,7 @@ reason_field_name_full_short_source <- (
          mutate(source = "acfr")) %>% 
          slice(-c(1:2))  #remove full_name and fye
 
-write.csv(reason_field_name_full_short_source, "output/reason_field_name_by_document.csv")
+write.csv(reason_field_name_full_short_source, "output/reason_full_short_fieldname_by_document.csv")
 ```
 
 # PPD code book & field names
