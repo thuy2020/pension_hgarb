@@ -374,7 +374,7 @@ setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_202
 Linking between Hgarb & Legacy Database: full_name, short_name, plan_id, ppd_id
 
 ```{r}
-# Queried from database: SELECT DISTINCT ON (plan_id, plan_name, ppd_id) plan_id, plan_name, ppd_id FROM public.master_attribute_view
+# Queried from pension legacy database: SELECT DISTINCT ON (plan_id, plan_name, ppd_id) plan_id, plan_name, ppd_id FROM public.master_attribute_view
 
 import("data/data-1710179186316.csv") %>% 
   mutate(plan_id = as.character(plan_id)) -> planid_planname_ppdid_legacydatabase
@@ -386,8 +386,6 @@ all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>%
     select(-c(full_name, plan_name)) %>% 
   relocate(plan_id, ppd_id, plan_name_hgarb, plan_name_legacydatabase, .before = 1) 
 
-all_plans_2021_2022_all_ids %>% 
-  filter(str_detect(plan_name_hgarb, "(?i)Massachusetts")) %>% write.csv("all_plans_massachusetts.csv")
 ```
 
 # reason complied names & ppd
@@ -400,51 +398,13 @@ all_plans_2021_2022_all_ids <- import("output/all_plans_2021_2022_updated April 
 ```
 
 
-<!-- # Equable teacher plans -->
-<!-- ```{r} -->
-<!-- teachers_plans_equable <- import("data/List of Teacher and Public School Plans for Reason.xlsx") %>% filter(`Municipal Plan` != "Yes") %>% filter(`Who it Covers?` == "Teachers") %>% select(System_Name, Plan_Shorthand) %>%  -->
-<!--   mutate(Plan_Shorthand = str_squish(Plan_Shorthand), -->
-<!--          Plan_Shorthand = str_trim(Plan_Shorthand)) %>%  -->
-<!--   rename(Plan_Shorthand_equable = Plan_Shorthand) %>% arrange(System_Name) -->
-
-<!-- teachers_plans_equable %>% left_join(ppd_plans_name, by = c("Plan_Shorthand" = "PlanName")) -->
-
-<!-- ppd_plans_name %>% filter(PlanName %in% teachers_plans_equable$Plan_Shorthand) -->
-
-<!-- teachers_plans_equable$Plan_Shorthand_equable -> equable_teacher_plan_list -->
-<!-- teachers_plans_equable$System_Name -->
-
-<!-- reason_plans_covering_teachers <- all_plans_2021_2022_all_ids %>% left_join(ppd_plans_name, by = "ppd_id") %>%  -->
-<!--   filter(plan_name_hgarb != "MICHIGAN PUBLIC SCHOOL EMPLOYEES RETIREMENT SYSTEM") %>%  -->
-<!--    # Regex to filter all plans that cover teacher - apply for reason data -->
-<!--   filter(str_detect(plan_name_hgarb, "(?i)(teacher)|(teachers)|(school)|(TRS)|(Education)") | str_detect(short_hand_ppd, "(?i)teacher|(Virginia RS)"))  -->
-
-<!-- write.csv(reason_plans_covering_teachers, "plans_covering_teachers.csv") -->
-
-
-<!-- reason_plans_covering_teachers %>% select(plan_name_hgarb, short_hand_ppd) %>% distinct() -->
-<!-- # double check against equable - has 45 distince plans while equable has 40 -->
-<!--   select(plan_name_hgarb, short_hand_ppd)  %>% distinct() -->
-
-
-
-<!-- teachers_plans_equable %>% select(System_Name, Plan_Shorthand_equable) %>% distinct() -->
-
-<!--   select(ppd_id, plan_id, plan_name_hgarb, short_hand_ppd) %>% distinct()  -->
-
-<!-- teachers_plans_equable %>% filter(str_detect(System_Name, "(?i)Colorado")) -->
-
-
-<!-- ``` -->
-
-
 
 # Data for database
 
 ## Transform the shape
 
 ```{r}
-%>% 
+all_plans_2021_2022_all_ids %>% 
  pivot_longer(col = 6: 189,
               names_to = "field",
               values_to = "value",
@@ -467,7 +427,30 @@ all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
 # Connecticut
 
 ```{r}
-all_plans_2021_2022_all_ids %>% filter(str_detect(plan_name_hgarb, "Connecticut")) %>% select(plan_name_hgarb) %>% distinct()
-  "Connecticut Teachers Retirement System"
+connecticut_SERS_acfrs <- all_plans_2021_2022_all_ids %>% 
+  filter(str_detect(plan_name_hgarb, "(?i)Connecticut")) %>% 
+  rename(full_name = plan_name_hgarb) %>% 
+  filter(full_name %in% c("CONNECTICUT STATE EMPLOYEES’ RETIREMENT SYSTEM")) %>% 
+  select(all_of(acfr_shortname))
+
+connecticut_SERS_acfrs %>% write.csv("connecticut_SERS_acfrs.csv")
+
+###
+connecticut_teachers_acfrs <- all_plans_2021_2022_all_ids %>% 
+  filter(str_detect(plan_name_hgarb, "(?i)Connecticut")) %>% 
+  rename(full_name = plan_name_hgarb) %>% 
+  filter(full_name %in% c("Connecticut Teachers Retirement System")) %>% 
+  select(all_of(acfr_shortname))
+
+connecticut_teachers_acfrs %>% write.csv("connecticut_teachers_acfrs.csv")
+
+
+connecticut_SERS_teachers_all_documents <- all_plans_2021_2022_all_ids %>% 
+  filter(str_detect(plan_name_hgarb, "(?i)Connecticut")) %>% 
+  rename(full_name = plan_name_hgarb) %>% 
+  filter(full_name %in% c("Connecticut Teachers Retirement System", "CONNECTICUT STATE EMPLOYEES’ RETIREMENT SYSTEM"))
+
+
+connecticut_SERS_teachers_all_documents %>% write.csv("connecticut_SERS_teachers_all_documents.csv")
 ```
 
