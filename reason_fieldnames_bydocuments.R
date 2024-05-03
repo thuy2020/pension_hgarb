@@ -72,3 +72,5 @@ ppd_colnames_created_by_reason <- import("data/marc_swaroop_handover_files/ppd-o
 
 #downloaded from ppd site 
 ppd_colnames <- import(here("data/ppd-data-latest.csv")) %>% colnames() %>% tolower() %>% sort()
+
+ppd_plans <- import(here("data/ppd-data-latest.csv")) 

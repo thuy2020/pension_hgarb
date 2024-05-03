@@ -15,6 +15,7 @@ library(data.table)
 library(tidyr)
 library(stringr)
 source("reason_fieldnames_bydocuments.R")
+source("ppd.R")
 ```
 
 # 2022
@@ -366,6 +367,7 @@ setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_202
 
 ```
 
+
 # Final result
 
 ```{r}
@@ -381,12 +383,21 @@ all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>%
          plan_name_legacydatabase = plan_name) %>% 
     select(-c(full_name, plan_name)) %>% 
   relocate(plan_id, ppd_id, plan_name_hgarb, plan_name_legacydatabase, .before = 1) 
+
+write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2022.csv")
+
+planid_planname_ppdid_legacydatabase %>% filter(ppd_id != "NULL")
 ```
 
-# reason complied names & ppd
+
 ```{r}
-write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2022.csv")
+# Plans collected in Reason that do not have ppd_id
+all_plans_2021_2022_all_ids %>% select(plan_id, ppd_id, plan_name_hgarb, plan_name_legacydatabase) %>% 
+  distinct() %>% 
+  filter(ppd_id != "NULL")
+
 ```
+
 
 # Data for database
 
