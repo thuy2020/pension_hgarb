@@ -19,13 +19,13 @@ source("reason_fieldnames_bydocuments.R")
 
 # 2022
 
+
 ## File list
 
 ```{r}
+#Hgarb collected before April 2022. All plans collected after April 2022 will be handled below. 
 filelist_2022 <- list.files("data/HGarb_Updates_2022", pattern = "_2022.xlsx")
 length(filelist_2022)
-
-setdiff(filelist_2022, filelist_2022_old) -> new_list
 
 #TODO: double check with Truong: these files do not have "updated" in their file names. Are they just typos or something need to pay attention here?
 
@@ -38,8 +38,10 @@ setdiff(filelist_2022, list.files("data/HGarb_Updates_2022", pattern = "updated_
 ## Function: read_1_file
 
 ```{r}
-read_1_file <- function (filename) {
-    filename = paste0("data/HGarb_Updates_2022/", filename)
+#folder = "data/HGarb_Updates_2022/"
+
+read_1_file <- function (folder, filename) {
+    filename = paste0(folder, filename)
 
 ### sheet 1
 s1 = import(filename, sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
@@ -91,7 +93,8 @@ plan_id <- import(filename, sheet = "Database Input") %>%
  return(result)
 }
 
-read_1_file("") %>% select(full_name, plan_id)
+# Test 1 case
+read_1_file("data/HGarb_Updates_2022/", "Alabama_ERS_updated_2022.xlsx")
 ```
 
 ## Regular cases
@@ -100,7 +103,7 @@ read_1_file("") %>% select(full_name, plan_id)
 # loop through all file names. Exceptions: 6, 8, 35, 76, 78 are dealt with below
 df = data.frame()
 for (filename in filelist_2022[c(1:5, 7, 9:34, 36:75, 77, 79:145)]) {
-  plan <- read_1_file(filename)
+  plan <- read_1_file(folder, filename)
   df = rbind(df, plan) %>% distinct()
 }
 
@@ -112,13 +115,19 @@ df_regular %>%
 
 ## Exceptions
 
-###new list
+### New plans collected after April 2022. 
 ```{r}
+filelist_2022_new <- list.files("data/Hgarb_Updates_2022_updated April 2022", pattern = "_2022.xlsx")
+length(filelist_2022_new) 
+setdiff(filelist_2022_new, filelist_2022) -> new_list
+
 # loop through new list 
 
 df = data.frame()
+folder = "data/Hgarb_Updates_2022_updated April 2022"
 for (filename in new_list) {
-  plan <- read_1_file(filename)
+  print(filename)
+  plan <- read_1_file("data/Hgarb_Updates_2022_updated April 2022", filename)
   df = rbind(df, plan) %>% distinct()
 }
 
@@ -143,27 +152,26 @@ saveRDS(df_newlist, "df_newlist.RDS")
 filelist_2022[6:8]
 #6 "Arizona_PSPRS_Tier 3_updated_2022.xlsx" # 35 lines
 # duplicates, multiple file for a year --> take rows below source line
-df6 <- read_1_file(filelist_2022[6]) %>% 
+df6 <- read_1_file("data/HGarb_Updates_2022/", filelist_2022[6]) %>% 
   mutate(full_name = ifelse(is.na(full_name), "Arizona - Public Safety Personnel Retirement System Tier 3", full_name)) %>% distinct() %>% 
   slice(-14) #take out the duplicate 14, has some literal string "NA" instead of value NA
 
 #Arizona State Retirement System
-df8 <- read_1_file(filelist_2022[8]) # has year 2000 with some values from col 161 ~
-
+df8 <- read_1_file("data/HGarb_Updates_2022/", filelist_2022[8]) # has year 2000 with some values from col 161 ~
 ```
 
 ### Georgia
 
 ```{r}
 #Georgia has year 2000
-df35 <- read_1_file(filelist_2022[35])
+df35 <- read_1_file("data/HGarb_Updates_2022/", filelist_2022[35])
 ```
 
 ### Massachusetts
 
 ```{r}
 # This has 31 rows. # first tab GASB has different full name from other tabs --> need to change full_name? 
-df76 <- read_1_file(filelist_2022[76]) 
+df76 <- read_1_file("data/HGarb_Updates_2022/", filelist_2022[76]) 
   
 # TODO: double check with Truong whether we need to change name to be identical between 3 sheets or keep it as is. 
 # GASB 68 has name "Massachusetts State Employees' Retirement System". Other 2 sheets : "Massachusetts- State Retirement System" to be the same with other 2 sheets
@@ -181,7 +189,7 @@ read_1_file("Michigan_JRS_updated_2022.xlsx") %>% colnames() -> colnames_excepti
  setdiff(colnames_normal, colnames_exception)
  setdiff(colnames_exception,colnames_normal)
  
-df78 <- read_1_file("Michigan_JRS_updated_2022.xlsx") %>% 
+df78 <- read_1_file("data/HGarb_Updates_2022/", "Michigan_JRS_updated_2022.xlsx") %>% 
   rename( tot_total_amt = x12)
 
 ```
@@ -299,38 +307,27 @@ df9_2021 <- read_1_file_2021(filelist_2021[9]) %>%
   slice(-14) #take out the duplicate 14, has some literal string "NA" instead of value NA
 ```
 
-## Result
+# Result: 2021, 2022, 2022 updated April 2022
 
 ```{r}
-
 df_newlist <- readRDS("df_newlist.RDS")
 all_plans_2021 <- rbind(df_regular_21, df9_2021) %>% 
   mutate(tot_total_amt = "NA") # adding a col that 2022 has but 2021 doesn't
 
 all_plans_2021 %>% distinct(full_name) # 192 full_name
 all_plans_2022 %>% distinct(full_name) # 149 full_name
+df_newlist %>% distinct(full_name) # 51 full_name
 
 # plans in 2021 but not in 2022
 setdiff(all_plans_2021 %>% distinct(full_name), all_plans_2022 %>% distinct(full_name))
 
-#rows that in 2021 but not in 2022
-all_plans_2021 %>% 
-  filter(!full_name %in% all_plans_2022$full_name) -> in_2021_not_in_2022
-
-df_newlist %>% 
-filter(full_name == "Alaska-Teacher's Retirement System")
-
-
 #bind back to 2022 & the new list updated
 all_plans_2021_2022 <- all_plans_2022 %>% 
-  #rbind(in_2021_not_in_2022) %>% 
   rbind(df_newlist) %>% distinct()
 
 # check for irregularity: All of these are checked & accounted for above
 all_plans_2021_2022 %>% add_count(full_name) %>% select(full_name, n) %>% 
   filter(n < 21 | n > 22)
-all_plans_2021_2022 %>% filter(full_name == "Wyoming Retirement System, Public Employees’ Pension Plan")
-
 ```
 
 
@@ -371,13 +368,12 @@ setdiff(str_remove(filelist_2021, "_updated_2021.xlsx"), str_remove(filelist_202
 
 # Final result
 
-Linking between Hgarb & Legacy Database: full_name, short_name, plan_id, ppd_id
-
 ```{r}
 # Queried from pension legacy database: SELECT DISTINCT ON (plan_id, plan_name, ppd_id) plan_id, plan_name, ppd_id FROM public.master_attribute_view
 
 import("data/data-1710179186316.csv") %>% 
-  mutate(plan_id = as.character(plan_id)) -> planid_planname_ppdid_legacydatabase
+  mutate(plan_id = as.character(plan_id)) %>% 
+  distinct() -> planid_planname_ppdid_legacydatabase
 
 all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>% 
   left_join(planid_planname_ppdid_legacydatabase, by=c("plan_id")) %>% 
@@ -385,19 +381,12 @@ all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>%
          plan_name_legacydatabase = plan_name) %>% 
     select(-c(full_name, plan_name)) %>% 
   relocate(plan_id, ppd_id, plan_name_hgarb, plan_name_legacydatabase, .before = 1) 
-
 ```
 
 # reason complied names & ppd
 ```{r}
-#write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2021_2022.csv")
-write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2021_2022_updated April 18.csv")
-
-all_plans_2021_2022_all_ids <- import("output/all_plans_2021_2022_updated April 18.csv")
-
+write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2022.csv")
 ```
-
-
 
 # Data for database
 

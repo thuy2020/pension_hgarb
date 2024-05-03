@@ -5,7 +5,8 @@ library(rio)
 # Reason data field fullname & shortname by document source
 
 #gasb
-gasb_fullname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "GASB 68") %>% colnames()
+gasb_fullname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "GASB 68") %>% 
+  colnames()
 
 gasb_shortname <- import("data/HGarb_Updates_2022/Texas_ESRS_updated_2022.xlsx", sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
   setnames(
