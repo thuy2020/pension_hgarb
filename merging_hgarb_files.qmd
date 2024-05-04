@@ -20,7 +20,6 @@ source("ppd.R")
 
 # 2022
 
-
 ## File list
 
 ```{r}
@@ -39,11 +38,9 @@ setdiff(filelist_2022, list.files("data/HGarb_Updates_2022", pattern = "updated_
 ## Function: read_1_file
 
 ```{r}
-#folder = "data/HGarb_Updates_2022/"
 
 read_1_file <- function (folder, filename) {
     filename = paste0(folder, filename)
-
 ### sheet 1
 s1 = import(filename, sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
     filter(!is.na(fye)) %>% slice(1:9) %>% 
@@ -94,8 +91,10 @@ plan_id <- import(filename, sheet = "Database Input") %>%
  return(result)
 }
 
+#folder = "data/HGarb_Updates_2022/"
 # Test 1 case
 read_1_file("data/HGarb_Updates_2022/", "Alabama_ERS_updated_2022.xlsx")
+
 ```
 
 ## Regular cases
@@ -113,6 +112,132 @@ df_regular <- df
 df_regular %>% 
   select(full_name) %>% add_count(full_name) %>% filter(n != 22)
 ```
+
+# 2023
+```{r}
+filelist_2023 <- list.files("data/2023", pattern = "_2023.xlsx")
+
+read_1_file_2023 <- function (folder, filename) {
+    filename = paste0(folder, filename)
+### sheet 1
+s1 = import(filename, sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:10) %>% 
+  # Differentiate some cols from sheet 1 & sheet 3 
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_gasb")))
+
+### sheet 2
+s2 = import(filename, sheet = "Actuarial Valuation", skip = 1) %>% #"Actuarial Valuation"
+      clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:23) %>% 
+      mutate(fye = as.double(fye)) %>%  # solve a few cases in sheet 2 
+  
+      # Differentiate some cols from sheet 2 & sheet 3 
+      setnames(
+        old =  c("actuarial_return", "market_return","ava" , "aal","ual", "funded_ratio_old", "payroll"), 
+        new = c(paste0(c("actuarial_return", "market_return","ava" , "aal", "ual", "funded_ratio_old", "payroll"), "_from_valuation")))
+
+
+###sheet 3
+s3 = import(filename, sheet = "CAFR", skip = 1) %>% #"CAFR"
+       clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:23) %>% 
+    # Differentiate some cols from sheet 2 & sheet 3 
+   setnames(old = c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"),
+    new = c(paste0(c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"), "_from_acfr"))) %>% 
+  
+  # Differentiate sheet 1 & sheet 3
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr")))
+
+# extract plan_id
+plan_id <- import(filename, sheet = "Database Input") %>% 
+    select(2) %>% colnames()
+
+ result <- s1 %>% 
+      full_join(s2, by = c("full_name", "fye")) %>% 
+      full_join(s3, by = c("full_name", "fye")) %>% 
+      arrange(fye) %>% 
+ #adding plan_id  
+   mutate(plan_id = plan_id)
+   
+   
+ return(result)
+}
+
+df = data.frame()
+for (filename in filelist_2023[c(1:14, 16:37, 39:57)]) {
+  plan <- read_1_file_2023("data/2023/", filename)
+  df = rbind(df, plan) %>% distinct()
+}
+df_2023_regular <- df
+
+# exceptions
+df_2023_15 <- read_1_file_2023("data/2023/", filelist_2023[15]) %>% 
+  select(-x5)
+
+df_2023_38 <- read_1_file_2023("data/2023/", filelist_2023[38]) %>% 
+  rename(tot_total_amt = x12)
+
+all_plans_2023 <- rbind(df_2023_regular, df_2023_15, df_2023_38)
+```
+
+```{r}
+#exception: "Delaware_PERS_NSPPP_updated_2023.xlsx", 15
+"Michigan_JRS_updated_2023.xlsx", 38
+
+s1 = import("data/2023/Delaware_PERS_NSPPP_updated_2023.xlsx", sheet = "GASB 68", skip = 1) %>% clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:10) %>% 
+  # Differentiate some cols from sheet 1 & sheet 3 
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_gasb")))
+
+### sheet 2
+s2 = import("data/2023/Michigan_JRS_updated_2023.xlsx", sheet = "Actuarial Valuation", skip = 1) %>% #"Actuarial Valuation"
+      clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:23) %>% 
+      mutate(fye = as.double(fye)) %>%  # solve a few cases in sheet 2 
+  
+      # Differentiate some cols from sheet 2 & sheet 3 
+      setnames(
+        old =  c("actuarial_return", "market_return","ava" , "aal","ual", "funded_ratio_old", "payroll"), 
+        new = c(paste0(c("actuarial_return", "market_return","ava" , "aal", "ual", "funded_ratio_old", "payroll"), "_from_valuation")))
+
+
+###sheet 3
+s3 = import("data/2023/Delaware_PERS_NSPPP_updated_2023.xlsx", sheet = "CAFR", skip = 1) %>% #"CAFR"
+       clean_names() %>% 
+    filter(!is.na(fye)) %>% slice(1:23) %>% 
+    # Differentiate some cols from sheet 2 & sheet 3 
+   setnames(old = c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"),
+    new = c(paste0(c("actuarial_return", "market_return", "ava", "aal", "ual", "funded_ratio_old",
+"payroll"), "_from_acfr"))) %>% 
+  
+  # Differentiate sheet 1 & sheet 3
+  setnames(
+    old = c("adec_amt", "adec_paid_amt", "adec_missed"),
+    new = c(paste0(c("adec_amt", "adec_paid_amt", "adec_missed"), "_from_acfr")))
+
+
+# extract plan_id
+plan_id <- import("data/2023/Delaware_PERS_NSPPP_updated_2023.xlsx", sheet = "Database Input") %>% 
+    select(2) %>% colnames()
+
+ result <- s1 %>% 
+      full_join(s2, by = c("full_name", "fye")) %>% 
+      full_join(s3, by = c("full_name", "fye")) %>% 
+      arrange(fye) %>% 
+ #adding plan_id  
+   mutate(plan_id = plan_id)
+   
+```
+
 
 ## Exceptions
 
@@ -377,6 +502,11 @@ import("data/data-1710179186316.csv") %>%
   mutate(plan_id = as.character(plan_id)) %>% 
   distinct() -> planid_planname_ppdid_legacydatabase
 
+
+planid_planname_ppdid_legacydatabase %>% filter(ppd_id != "NULL") %>% write.csv("output/linking_reasonPlanID_ppdID.csv")
+
+#
+
 all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>% 
   left_join(planid_planname_ppdid_legacydatabase, by=c("plan_id")) %>% 
   mutate(plan_name_hgarb = full_name,
@@ -386,7 +516,7 @@ all_plans_2021_2022_all_ids <- all_plans_2021_2022 %>%
 
 write.csv(all_plans_2021_2022_all_ids, "output/all_plans_2022.csv")
 
-planid_planname_ppdid_legacydatabase %>% filter(ppd_id != "NULL")
+
 ```
 
 
