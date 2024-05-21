@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r warning=FALSE, message=FALSE}
+library(dplyr)
+library(readxl) 
+library(stringr)
+library(rio)
+library(here)
+library(janitor)
+library(data.table)
+library(tidyr)
+library(stringr)
+source("reason_fieldnames_bydocuments.R")
+source("ppd.R")
+```
+
+```{r}
+#| echo: false
+df_2022 %>% 
+  add_count(full_name) %>% select(full_name, n) %>% distinct() %>% 
+  filter(n !=22)
+
+df_2023 %>% 
+  add_count(full_name) %>% select(full_name, n) %>% distinct() %>% 
+  filter(n !=23)
+  
+#check some fields:
+all_plans_2023 %>% select(nc_prior_year, interest_on_debt, amo_total_amt)
+
+
+#TODO: some plans have similar names, currently assigned to same plan_id. Need to double check with Truong
+all_plans_2023 %>% select(plan_id, full_name) %>% distinct() -> unique_name_id
+
+duplicated_ids <- unique_name_id$plan_id[duplicated(unique_name_id$plan_id)]
+
+all_plans_2023 %>% filter(plan_id %in% duplicated_ids) %>% select(full_name, plan_id)
+
+  
+```
