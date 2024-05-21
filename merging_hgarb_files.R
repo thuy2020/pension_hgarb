@@ -150,13 +150,14 @@ michigan <- import_and_slice("data/2023_May7/Michigan_JRS_updated_2023.xlsx") %>
 
 exceptions <- rbind(delaware, michigan)
 
-#dealing with missing full_name
-df_2023 <- df_2023 %>% 
-  mutate(full_name = ifelse(plan_id == "6060", "Arizona - Public Safety Personnel Retirement System Tier 3", full_name)) 
+#dealing with other errors 
+df_2023_correction <- df_2023 %>% 
+  mutate(full_name = ifelse(plan_id == "6060", "Arizona - Public Safety Personnel Retirement System Tier 3", full_name))  
 
 
 #######Result#########
-all_plans_2023 <- rbind(df_2022, df_2023, exceptions) 
-write.csv(all_plans_2023, "output/all_plans_2023.csv")
+all_plans_2023 <- rbind(df_2022, df_2023_correction, exceptions) %>% 
+  mutate(plan_id = str_remove(plan_id, "\\.0"))
 
+#write.csv(all_plans_2023, "output/all_plans_2023_hgarb.csv")
 

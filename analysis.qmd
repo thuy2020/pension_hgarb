@@ -11,27 +11,23 @@ library(stringr)
 library(rio)
 library(here)
 library(janitor)
-library(data.table)
 library(tidyr)
-library(stringr)
+source("merging_hgarb_files.R")
 source("reason_fieldnames_bydocuments.R")
 source("ppd.R")
 ```
 
+# Checking data
 ```{r}
 #| echo: false
 df_2022 %>% 
   add_count(full_name) %>% select(full_name, n) %>% distinct() %>% 
   filter(n !=22)
 
-df_2023 %>% 
+df_2023_correction %>% 
   add_count(full_name) %>% select(full_name, n) %>% distinct() %>% 
   filter(n !=23)
   
-#check some fields:
-all_plans_2023 %>% select(nc_prior_year, interest_on_debt, amo_total_amt)
-
-
 #TODO: some plans have similar names, currently assigned to same plan_id. Need to double check with Truong
 all_plans_2023 %>% select(plan_id, full_name) %>% distinct() -> unique_name_id
 
@@ -39,5 +35,45 @@ duplicated_ids <- unique_name_id$plan_id[duplicated(unique_name_id$plan_id)]
 
 all_plans_2023 %>% filter(plan_id %in% duplicated_ids) %>% select(full_name, plan_id)
 
-  
 ```
+
+# Getting ppd ID 
+```{r}
+# This file is queried from pension legacy database: SELECT DISTINCT ON (plan_id, plan_name, ppd_id) plan_id, plan_name, ppd_id FROM public.master_attribute_view
+
+planid_planname_ppdid_legacydatabase <- import("data/data-1710179186316.csv") %>% 
+  mutate(plan_id = as.character(plan_id)) %>% 
+  distinct() 
+
+all_plans_2023_all_ids <- all_plans_2023 %>% 
+  left_join(planid_planname_ppdid_legacydatabase, by=c("plan_id")) %>% 
+  mutate(plan_name_hgarb = full_name,
+         plan_name_legacydatabase = plan_name) %>% 
+    select(-c(full_name, plan_name)) %>% 
+  relocate(plan_id, ppd_id, plan_name_hgarb, plan_name_legacydatabase, .before = 1) 
+
+write.csv(all_plans_2023_all_ids, "output/all_plans_2023.csv")
+```
+
+# Data for database
+```{r}
+all_plans_2023_all_ids %>% #select(amo_total_amt, nc_prior_year, interest_on_debt)
+ pivot_longer(col = 6: 189,
+              names_to = "field",
+              values_to = "value",
+              values_transform = list(value = as.character)) %>% 
+ 
+  mutate(source = case_when(field %in% (gasb_shortname) ~ "gasb",
+                            field %in% (valuation_shortname) ~ "valuation",
+                            field %in% (acfr_shortname) ~ "acfrs",
+                            TRUE ~ as.character(NA)
+                            
+)) -> all_plans_21_22_longform_database
+
+
+all_plans_21_22_longform_database #%>% #filter(field %in% c("amo_total_amt", "nc_prior_year", "interest_on_debt"))
+#Note: large file, need to track by lfs
+all_plans_21_22_longform_database %>% write.csv("output/data_for_database.csv")
+
+```
+
